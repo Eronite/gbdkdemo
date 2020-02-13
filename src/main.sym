@@ -1,0 +1,61 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy Z80-like CPU), page 1.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+    .__.$$$.                                                    =  2710 L
+    .__.ABS.                                                    =  0000 G
+    .__.CPU.                                                    =  0000 L
+    .__.H$L.                                                    =  0000 L
+    _PLAYER_SPRITES                                                **** GX
+  1 _PLAYER_SPRITE_ANIM_L                                          0000 GR
+  1 _PLAYER_SPRITE_ANIM_R                                          0018 GR
+    _TILEMAP                                                       **** GX
+    _TILESET                                                       **** GX
+  0 ___str_0                                                       00F3 R
+  0 ___str_1                                                       00FF R
+    __modsint                                                      **** GX
+  0 _clear_screen                                                  010F GR
+  0 _flip_sprite_horiz                                             0000 GR
+    _get_sprite_prop                                               **** GX
+    _gotoxy                                                        **** GX
+  1 _is_player_walking                                             0038 GR
+    _joypad                                                        **** GX
+  0 _main                                                          0135 GR
+    _move_bkg                                                      **** GX
+    _move_sprite                                                   **** GX
+  1 _player_animation_frame                                        0037 GR
+  1 _player_direction                                              0036 GR
+  1 _player_virtual_x                                              0032 GR
+  1 _player_virtual_y                                              0034 GR
+  1 _player_x                                                      0030 GR
+  1 _player_y                                                      0031 GR
+    _printf                                                        **** GX
+    _scroll_bkg                                                    **** GX
+    _set_bkg_data                                                  **** GX
+    _set_bkg_tiles                                                 **** GX
+    _set_sprite_data                                               **** GX
+    _set_sprite_prop                                               **** GX
+    _set_sprite_tile                                               **** GX
+    _setchar                                                       **** GX
+  0 _title_screen                                                  00B9 GR
+  0 _unflip_sprite_horiz                                           0019 GR
+  0 _update_sprite_animation                                       0032 GR
+    _wait_vbl_done                                                 **** GX
+    _waitpad                                                       **** GX
+    _waitpadup                                                     **** GX
+
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (GameBoy Z80-like CPU), page 2.
+Hexadecimal [16-Bits]
+
+Area Table
+
+   0 _CODE                                      size  40A   flags    0
+   1 _DATA                                      size   39   flags    0
+   2 _DABS                                      size    0   flags    8
+   3 _HOME                                      size    0   flags    0
+   4 _GSINIT                                    size   F0   flags    0
+   5 _GSFINAL                                   size    0   flags    0
+   6 _CABS                                      size    0   flags    8
+
