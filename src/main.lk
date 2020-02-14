@@ -2,11 +2,11 @@
 -i main.ihx
 -b _CODE = 0x0200
 -b _DATA = 0xc0a0
--k C:/Users/FDO/GB_GayTest/src/gbdk/bin/../lib
+-k C:/Users/FDO/GB_GehBoiHaven/src/gbdk/bin/../lib
 -k C:\Program Files\SDCC\bin\..\lib\gbz80
 -l gb.lib
 -l gbz80
-C:/Users/FDO/GB_GayTest/src/gbdk/bin/../lib/crt0.rel
+C:/Users/FDO/GB_GehBoiHaven/src/gbdk/bin/../lib/crt0.rel
 main.rel
 player.sprites.rel
 tilemap.rel

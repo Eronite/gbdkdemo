@@ -167,34 +167,94 @@ void main(void)
         // On attend le rafraichissement de l'écran (v-sync)
         wait_vbl_done();
 
-        // On lit les touche du gamepad pour savoir si le joueur
+        // On lit les touches du gamepad pour savoir si le joueur
         // se déplace, et dans quelle direction
         keys = joypad();
 
-        if (keys & J_UP && player_virtual_y > 70)
+        if (keys & J_UP && player_virtual_y > 70 && player_virtual_y < 180)
         {
             scroll_bkg(0, -1);
             player_direction = PLAYER_DIRECTION_UP;
             is_player_walking = 1;
         }
-        else if (keys & J_DOWN && player_virtual_y < 190)
+
+        else if (keys & J_UP && player_virtual_y <= 70 && player_virtual_y > 10)
+        {
+            player_y -= 1;
+            player_direction = PLAYER_DIRECTION_UP;
+            is_player_walking = 1;
+        }
+
+        else if (keys & J_UP && player_virtual_y >= 180)
+        {
+            player_y -= 1;
+            player_direction = PLAYER_DIRECTION_UP;
+            is_player_walking = 1;
+        }
+
+        else if (keys & J_DOWN && player_virtual_y < 180 && player_virtual_y > 70)
         {
             scroll_bkg(0, 1);
             player_direction = PLAYER_DIRECTION_DOWN;
             is_player_walking = 1;
         }
-        else if (keys & J_LEFT && player_virtual_x > 70)
+
+        else if (keys & J_DOWN && player_virtual_y <= 70)
+        {
+            player_y += 1;
+            player_direction = PLAYER_DIRECTION_DOWN;
+            is_player_walking = 1;
+        }
+
+        else if (keys & J_DOWN && player_virtual_y >= 180 && player_virtual_y <= 250)
+        {
+            player_y += 1;
+            player_direction = PLAYER_DIRECTION_DOWN;
+            is_player_walking = 1;
+        }
+
+        else if (keys & J_LEFT && player_virtual_x > 70 && player_virtual_x < 175)
         {   
             scroll_bkg(-1, 0);    
             player_direction = PLAYER_DIRECTION_LEFT;
             is_player_walking = 1;
         }
-        else if (keys & J_RIGHT && player_virtual_x < 170)
+
+        else if (keys & J_LEFT && player_virtual_x <= 70 && player_virtual_x > -5)
+        {   
+            player_x -= 1;    
+            player_direction = PLAYER_DIRECTION_LEFT;
+            is_player_walking = 1;
+        }
+
+        else if (keys & J_LEFT && player_virtual_x >= 175)
+        {   
+            player_x -= 1;    
+            player_direction = PLAYER_DIRECTION_LEFT;
+            is_player_walking = 1;
+        }
+
+        else if (keys & J_RIGHT && player_virtual_x < 175  && player_virtual_x > 70)
         {
             scroll_bkg(1, 0);
             player_direction = PLAYER_DIRECTION_RIGHT;
             is_player_walking = 1;
         }
+
+        else if (keys & J_RIGHT && player_virtual_x <= 70)
+        {
+            player_x += 1;
+            player_direction = PLAYER_DIRECTION_RIGHT;
+            is_player_walking = 1;
+        }
+
+        else if (keys & J_RIGHT && player_virtual_x >= 175 && player_virtual_x < 250)
+        {
+            player_x += 1;
+            player_direction = PLAYER_DIRECTION_RIGHT;
+            is_player_walking = 1;
+        }
+
         else
         {
             is_player_walking = 0;

@@ -452,509 +452,835 @@
                             449 ; Function main
                             450 ; ---------------------------------
    0135                     451 _main::
-   0135 3B                  452 	dec	sp
+   0135 E8 FA               452 	add	sp, #-6
                             453 ;main.c:122: title_screen();
-   0136 CDrB9r00            454 	call	_title_screen
+   0137 CDrB9r00            454 	call	_title_screen
                             455 ;main.c:123: clear_screen();
-   0139 CDr0Fr01            456 	call	_clear_screen
+   013A CDr0Fr01            456 	call	_clear_screen
                             457 ;main.c:126: set_bkg_data(0, TILESET_TILE_COUNT, TILESET);
-   013C 21r00r00            458 	ld	hl, #_TILESET
-   013F E5                  459 	push	hl
-   0140 3E 5F               460 	ld	a, #0x5f
-   0142 F5                  461 	push	af
-   0143 33                  462 	inc	sp
-   0144 AF                  463 	xor	a, a
-   0145 F5                  464 	push	af
-   0146 33                  465 	inc	sp
-   0147 CDr00r00            466 	call	_set_bkg_data
-   014A E8 04               467 	add	sp, #4
+   013D 21r00r00            458 	ld	hl, #_TILESET
+   0140 E5                  459 	push	hl
+   0141 3E 5F               460 	ld	a, #0x5f
+   0143 F5                  461 	push	af
+   0144 33                  462 	inc	sp
+   0145 AF                  463 	xor	a, a
+   0146 F5                  464 	push	af
+   0147 33                  465 	inc	sp
+   0148 CDr00r00            466 	call	_set_bkg_data
+   014B E8 04               467 	add	sp, #4
                             468 ;main.c:130: set_bkg_tiles(0, 0, TILEMAP_WIDTH, TILEMAP_HEIGHT, TILEMAP);
-   014C 21r00r00            469 	ld	hl, #_TILEMAP
-   014F E5                  470 	push	hl
-   0150 3E 20               471 	ld	a, #0x20
-   0152 F5                  472 	push	af
-   0153 33                  473 	inc	sp
-   0154 3E 20               474 	ld	a, #0x20
-   0156 F5                  475 	push	af
-   0157 33                  476 	inc	sp
-   0158 AF                  477 	xor	a, a
-   0159 F5                  478 	push	af
-   015A 33                  479 	inc	sp
-   015B AF                  480 	xor	a, a
-   015C F5                  481 	push	af
-   015D 33                  482 	inc	sp
-   015E CDr00r00            483 	call	_set_bkg_tiles
-   0161 E8 06               484 	add	sp, #6
+   014D 21r00r00            469 	ld	hl, #_TILEMAP
+   0150 E5                  470 	push	hl
+   0151 3E 20               471 	ld	a, #0x20
+   0153 F5                  472 	push	af
+   0154 33                  473 	inc	sp
+   0155 3E 20               474 	ld	a, #0x20
+   0157 F5                  475 	push	af
+   0158 33                  476 	inc	sp
+   0159 AF                  477 	xor	a, a
+   015A F5                  478 	push	af
+   015B 33                  479 	inc	sp
+   015C AF                  480 	xor	a, a
+   015D F5                  481 	push	af
+   015E 33                  482 	inc	sp
+   015F CDr00r00            483 	call	_set_bkg_tiles
+   0162 E8 06               484 	add	sp, #6
                             485 ;main.c:132: SHOW_BKG;
-   0163 21 40 FF            486 	ld	hl, #0xff40
-   0166 7E                  487 	ld	a, (hl)
-   0167 CB C7               488 	set	0, a
-   0169 21 40 FF            489 	ld	hl, #0xff40
-   016C 77                  490 	ld	(hl), a
+   0164 21 40 FF            486 	ld	hl, #0xff40
+   0167 7E                  487 	ld	a, (hl)
+   0168 CB C7               488 	set	0, a
+   016A 21 40 FF            489 	ld	hl, #0xff40
+   016D 77                  490 	ld	(hl), a
                             491 ;main.c:135: UINT8 frame_skip = 8;  // On met à jour l'animation toutes les 8 frames
-   016D F8 00               492 	ldhl	sp,	#0
-   016F 36 08               493 	ld	(hl), #0x08
+   016E F8 00               492 	ldhl	sp,	#0
+   0170 36 08               493 	ld	(hl), #0x08
                             494 ;main.c:141: player_x = 80;
-   0171 21r30r00            495 	ld	hl, #_player_x
-   0174 36 50               496 	ld	(hl), #0x50
+   0172 21r30r00            495 	ld	hl, #_player_x
+   0175 36 50               496 	ld	(hl), #0x50
                             497 ;main.c:142: player_y = 72;
-   0176 21r31r00            498 	ld	hl, #_player_y
-   0179 36 48               499 	ld	(hl), #0x48
+   0177 21r31r00            498 	ld	hl, #_player_y
+   017A 36 48               499 	ld	(hl), #0x48
                             500 ;main.c:143: player_virtual_x = 80;
-   017B 21r32r00            501 	ld	hl, #_player_virtual_x
-   017E 36 50               502 	ld	(hl), #0x50
-   0180 23                  503 	inc	hl
-   0181 36 00               504 	ld	(hl), #0x00
+   017C 21r32r00            501 	ld	hl, #_player_virtual_x
+   017F 36 50               502 	ld	(hl), #0x50
+   0181 23                  503 	inc	hl
+   0182 36 00               504 	ld	(hl), #0x00
                             505 ;main.c:144: player_virtual_y = 72;
-   0183 21r34r00            506 	ld	hl, #_player_virtual_y
-   0186 36 48               507 	ld	(hl), #0x48
-   0188 23                  508 	inc	hl
-   0189 36 00               509 	ld	(hl), #0x00
+   0184 21r34r00            506 	ld	hl, #_player_virtual_y
+   0187 36 48               507 	ld	(hl), #0x48
+   0189 23                  508 	inc	hl
+   018A 36 00               509 	ld	(hl), #0x00
                             510 ;main.c:145: player_direction = PLAYER_DIRECTION_DOWN;
-   018B 21r36r00            511 	ld	hl, #_player_direction
-   018E 36 00               512 	ld	(hl), #0x00
+   018C 21r36r00            511 	ld	hl, #_player_direction
+   018F 36 00               512 	ld	(hl), #0x00
                             513 ;main.c:146: player_animation_frame = 0;
-   0190 21r37r00            514 	ld	hl, #_player_animation_frame
-   0193 36 00               515 	ld	(hl), #0x00
+   0191 21r37r00            514 	ld	hl, #_player_animation_frame
+   0194 36 00               515 	ld	(hl), #0x00
                             516 ;main.c:147: is_player_walking = 0;
-   0195 21r38r00            517 	ld	hl, #_is_player_walking
-   0198 36 00               518 	ld	(hl), #0x00
+   0196 21r38r00            517 	ld	hl, #_is_player_walking
+   0199 36 00               518 	ld	(hl), #0x00
                             519 ;main.c:150: set_sprite_data(0, PLAYER_SPRITES_TILE_COUNT, PLAYER_SPRITES);
-   019A 21r00r00            520 	ld	hl, #_PLAYER_SPRITES
-   019D E5                  521 	push	hl
-   019E 3E 24               522 	ld	a, #0x24
-   01A0 F5                  523 	push	af
-   01A1 33                  524 	inc	sp
-   01A2 AF                  525 	xor	a, a
-   01A3 F5                  526 	push	af
-   01A4 33                  527 	inc	sp
-   01A5 CDr00r00            528 	call	_set_sprite_data
-   01A8 E8 04               529 	add	sp, #4
+   019B 21r00r00            520 	ld	hl, #_PLAYER_SPRITES
+   019E E5                  521 	push	hl
+   019F 3E 24               522 	ld	a, #0x24
+   01A1 F5                  523 	push	af
+   01A2 33                  524 	inc	sp
+   01A3 AF                  525 	xor	a, a
+   01A4 F5                  526 	push	af
+   01A5 33                  527 	inc	sp
+   01A6 CDr00r00            528 	call	_set_sprite_data
+   01A9 E8 04               529 	add	sp, #4
                             530 ;main.c:153: SPRITES_8x16;
-   01AA 21 40 FF            531 	ld	hl, #0xff40
-   01AD 7E                  532 	ld	a, (hl)
-   01AE CB D7               533 	set	2, a
-   01B0 21 40 FF            534 	ld	hl, #0xff40
-   01B3 77                  535 	ld	(hl), a
+   01AB 21 40 FF            531 	ld	hl, #0xff40
+   01AE 7E                  532 	ld	a, (hl)
+   01AF CB D7               533 	set	2, a
+   01B1 21 40 FF            534 	ld	hl, #0xff40
+   01B4 77                  535 	ld	(hl), a
                             536 ;main.c:156: SHOW_SPRITES;
-   01B4 2E 40               537 	ld	l, #0x40
-   01B6 7E                  538 	ld	a, (hl)
-   01B7 CB CF               539 	set	1, a
-   01B9 21 40 FF            540 	ld	hl, #0xff40
-   01BC 77                  541 	ld	(hl), a
+   01B5 2E 40               537 	ld	l, #0x40
+   01B7 7E                  538 	ld	a, (hl)
+   01B8 CB CF               539 	set	1, a
+   01BA 21 40 FF            540 	ld	hl, #0xff40
+   01BD 77                  541 	ld	(hl), a
                             542 ;main.c:159: move_sprite(PLAYER_SPRITE_L_ID, player_x, player_y);
-   01BD 21r31r00            543 	ld	hl, #_player_y
-   01C0 7E                  544 	ld	a, (hl)
-   01C1 F5                  545 	push	af
-   01C2 33                  546 	inc	sp
-   01C3 21r30r00            547 	ld	hl, #_player_x
-   01C6 7E                  548 	ld	a, (hl)
-   01C7 F5                  549 	push	af
-   01C8 33                  550 	inc	sp
-   01C9 AF                  551 	xor	a, a
-   01CA F5                  552 	push	af
-   01CB 33                  553 	inc	sp
-   01CC CDr00r00            554 	call	_move_sprite
-   01CF E8 03               555 	add	sp, #3
+   01BE 21r31r00            543 	ld	hl, #_player_y
+   01C1 7E                  544 	ld	a, (hl)
+   01C2 F5                  545 	push	af
+   01C3 33                  546 	inc	sp
+   01C4 21r30r00            547 	ld	hl, #_player_x
+   01C7 7E                  548 	ld	a, (hl)
+   01C8 F5                  549 	push	af
+   01C9 33                  550 	inc	sp
+   01CA AF                  551 	xor	a, a
+   01CB F5                  552 	push	af
+   01CC 33                  553 	inc	sp
+   01CD CDr00r00            554 	call	_move_sprite
+   01D0 E8 03               555 	add	sp, #3
                             556 ;main.c:160: set_sprite_prop(PLAYER_SPRITE_L_ID, S_PALETTE);
-   01D1 3E 10               557 	ld	a, #0x10
-   01D3 F5                  558 	push	af
-   01D4 33                  559 	inc	sp
-   01D5 AF                  560 	xor	a, a
-   01D6 F5                  561 	push	af
-   01D7 33                  562 	inc	sp
-   01D8 CDr00r00            563 	call	_set_sprite_prop
-   01DB E8 02               564 	add	sp, #2
+   01D2 3E 10               557 	ld	a, #0x10
+   01D4 F5                  558 	push	af
+   01D5 33                  559 	inc	sp
+   01D6 AF                  560 	xor	a, a
+   01D7 F5                  561 	push	af
+   01D8 33                  562 	inc	sp
+   01D9 CDr00r00            563 	call	_set_sprite_prop
+   01DC E8 02               564 	add	sp, #2
                             565 ;main.c:162: move_sprite(PLAYER_SPRITE_R_ID, player_x + 8, player_y);
-   01DD 21r30r00            566 	ld	hl, #_player_x
-   01E0 7E                  567 	ld	a, (hl)
-   01E1 C6 08               568 	add	a, #0x08
-   01E3 47                  569 	ld	b, a
-   01E4 21r31r00            570 	ld	hl, #_player_y
-   01E7 7E                  571 	ld	a, (hl)
-   01E8 F5                  572 	push	af
-   01E9 33                  573 	inc	sp
-   01EA C5                  574 	push	bc
-   01EB 33                  575 	inc	sp
-   01EC 3E 01               576 	ld	a, #0x01
-   01EE F5                  577 	push	af
-   01EF 33                  578 	inc	sp
-   01F0 CDr00r00            579 	call	_move_sprite
-   01F3 E8 03               580 	add	sp, #3
+   01DE 21r30r00            566 	ld	hl, #_player_x
+   01E1 7E                  567 	ld	a, (hl)
+   01E2 C6 08               568 	add	a, #0x08
+   01E4 47                  569 	ld	b, a
+   01E5 21r31r00            570 	ld	hl, #_player_y
+   01E8 7E                  571 	ld	a, (hl)
+   01E9 F5                  572 	push	af
+   01EA 33                  573 	inc	sp
+   01EB C5                  574 	push	bc
+   01EC 33                  575 	inc	sp
+   01ED 3E 01               576 	ld	a, #0x01
+   01EF F5                  577 	push	af
+   01F0 33                  578 	inc	sp
+   01F1 CDr00r00            579 	call	_move_sprite
+   01F4 E8 03               580 	add	sp, #3
                             581 ;main.c:163: set_sprite_prop(PLAYER_SPRITE_R_ID, S_PALETTE);
-   01F5 3E 10               582 	ld	a, #0x10
-   01F7 F5                  583 	push	af
-   01F8 33                  584 	inc	sp
-   01F9 3E 01               585 	ld	a, #0x01
-   01FB F5                  586 	push	af
-   01FC 33                  587 	inc	sp
-   01FD CDr00r00            588 	call	_set_sprite_prop
-   0200 E8 02               589 	add	sp, #2
+   01F6 3E 10               582 	ld	a, #0x10
+   01F8 F5                  583 	push	af
+   01F9 33                  584 	inc	sp
+   01FA 3E 01               585 	ld	a, #0x01
+   01FC F5                  586 	push	af
+   01FD 33                  587 	inc	sp
+   01FE CDr00r00            588 	call	_set_sprite_prop
+   0201 E8 02               589 	add	sp, #2
                             590 ;main.c:165: while (1)
-   0202                     591 00137$:
+   0203                     591 00177$:
                             592 ;main.c:168: wait_vbl_done();
-   0202 CDr00r00            593 	call	_wait_vbl_done
+   0203 CDr00r00            593 	call	_wait_vbl_done
                             594 ;main.c:172: keys = joypad();
-   0205 CDr00r00            595 	call	_joypad
-   0208 7B                  596 	ld	a, e
-   0209 4F                  597 	ld	c, a
-                            598 ;main.c:174: if (keys & J_UP && player_virtual_y > 70)
-   020A CB 51               599 	bit	2, c
-   020C CAr4Ar02            600 	jp	Z,00114$
-   020F 21r34r00            601 	ld	hl, #_player_virtual_y
-   0212 3E 46               602 	ld	a, #0x46
-   0214 96                  603 	sub	a, (hl)
-   0215 23                  604 	inc	hl
-   0216 3E 00               605 	ld	a, #0x00
-   0218 9E                  606 	sbc	a, (hl)
-   0219 3E 00               607 	ld	a, #0x00
-   021B 57                  608 	ld	d, a
-   021C 5E                  609 	ld	e, (hl)
-   021D CB 7B               610 	bit	7, e
-   021F 28 07               611 	jr	Z,00222$
-   0221 CB 7A               612 	bit	7, d
-   0223 20 08               613 	jr	NZ,00223$
-   0225 BF                  614 	cp	a, a
-   0226 18 05               615 	jr	00223$
-   0228                     616 00222$:
-   0228 CB 7A               617 	bit	7, d
-   022A 28 01               618 	jr	Z,00223$
-   022C 37                  619 	scf
-   022D                     620 00223$:
-   022D 30 1B               621 	jr	NC,00114$
-                            622 ;main.c:176: scroll_bkg(0, -1);
-   022F C5                  623 	push	bc
-   0230 3E FF               624 	ld	a, #0xff
-   0232 F5                  625 	push	af
-   0233 33                  626 	inc	sp
-   0234 AF                  627 	xor	a, a
-   0235 F5                  628 	push	af
-   0236 33                  629 	inc	sp
-   0237 CDr00r00            630 	call	_scroll_bkg
-   023A E8 02               631 	add	sp, #2
-   023C C1                  632 	pop	bc
-                            633 ;main.c:177: player_direction = PLAYER_DIRECTION_UP;
-   023D 21r36r00            634 	ld	hl, #_player_direction
-   0240 36 06               635 	ld	(hl), #0x06
-                            636 ;main.c:178: is_player_walking = 1;
-   0242 21r38r00            637 	ld	hl, #_is_player_walking
-   0245 36 01               638 	ld	(hl), #0x01
-   0247 C3r12r03            639 	jp	00115$
-   024A                     640 00114$:
-                            641 ;main.c:180: else if (keys & J_DOWN && player_virtual_y < 190)
-   024A CB 59               642 	bit	3, c
-   024C CAr8Ar02            643 	jp	Z,00110$
-   024F 21r34r00            644 	ld	hl, #_player_virtual_y
-   0252 7E                  645 	ld	a, (hl)
-   0253 D6 BE               646 	sub	a, #0xbe
-   0255 23                  647 	inc	hl
-   0256 7E                  648 	ld	a, (hl)
-   0257 DE 00               649 	sbc	a, #0x00
-   0259 56                  650 	ld	d, (hl)
-   025A 3E 00               651 	ld	a, #0x00
-   025C 5F                  652 	ld	e, a
-   025D CB 7B               653 	bit	7, e
-   025F 28 07               654 	jr	Z,00225$
-   0261 CB 7A               655 	bit	7, d
-   0263 20 08               656 	jr	NZ,00226$
-   0265 BF                  657 	cp	a, a
-   0266 18 05               658 	jr	00226$
-   0268                     659 00225$:
-   0268 CB 7A               660 	bit	7, d
-   026A 28 01               661 	jr	Z,00226$
-   026C 37                  662 	scf
-   026D                     663 00226$:
-   026D 30 1B               664 	jr	NC,00110$
-                            665 ;main.c:182: scroll_bkg(0, 1);
-   026F C5                  666 	push	bc
-   0270 3E 01               667 	ld	a, #0x01
-   0272 F5                  668 	push	af
-   0273 33                  669 	inc	sp
-   0274 AF                  670 	xor	a, a
-   0275 F5                  671 	push	af
-   0276 33                  672 	inc	sp
-   0277 CDr00r00            673 	call	_scroll_bkg
-   027A E8 02               674 	add	sp, #2
-   027C C1                  675 	pop	bc
-                            676 ;main.c:183: player_direction = PLAYER_DIRECTION_DOWN;
-   027D 21r36r00            677 	ld	hl, #_player_direction
-   0280 36 00               678 	ld	(hl), #0x00
-                            679 ;main.c:184: is_player_walking = 1;
-   0282 21r38r00            680 	ld	hl, #_is_player_walking
-   0285 36 01               681 	ld	(hl), #0x01
-   0287 C3r12r03            682 	jp	00115$
-   028A                     683 00110$:
-                            684 ;main.c:186: else if (keys & J_LEFT && player_virtual_x > 70)
-   028A CB 49               685 	bit	1, c
-   028C CArCAr02            686 	jp	Z,00106$
-   028F 21r32r00            687 	ld	hl, #_player_virtual_x
-   0292 3E 46               688 	ld	a, #0x46
-   0294 96                  689 	sub	a, (hl)
-   0295 23                  690 	inc	hl
-   0296 3E 00               691 	ld	a, #0x00
-   0298 9E                  692 	sbc	a, (hl)
-   0299 3E 00               693 	ld	a, #0x00
-   029B 57                  694 	ld	d, a
-   029C 5E                  695 	ld	e, (hl)
-   029D CB 7B               696 	bit	7, e
-   029F 28 07               697 	jr	Z,00228$
-   02A1 CB 7A               698 	bit	7, d
-   02A3 20 08               699 	jr	NZ,00229$
-   02A5 BF                  700 	cp	a, a
-   02A6 18 05               701 	jr	00229$
-   02A8                     702 00228$:
-   02A8 CB 7A               703 	bit	7, d
-   02AA 28 01               704 	jr	Z,00229$
-   02AC 37                  705 	scf
-   02AD                     706 00229$:
-   02AD 30 1B               707 	jr	NC,00106$
-                            708 ;main.c:188: scroll_bkg(-1, 0);    
-   02AF C5                  709 	push	bc
-   02B0 AF                  710 	xor	a, a
-   02B1 F5                  711 	push	af
-   02B2 33                  712 	inc	sp
-   02B3 3E FF               713 	ld	a, #0xff
-   02B5 F5                  714 	push	af
-   02B6 33                  715 	inc	sp
-   02B7 CDr00r00            716 	call	_scroll_bkg
-   02BA E8 02               717 	add	sp, #2
-   02BC C1                  718 	pop	bc
-                            719 ;main.c:189: player_direction = PLAYER_DIRECTION_LEFT;
-   02BD 21r36r00            720 	ld	hl, #_player_direction
-   02C0 36 12               721 	ld	(hl), #0x12
-                            722 ;main.c:190: is_player_walking = 1;
-   02C2 21r38r00            723 	ld	hl, #_is_player_walking
-   02C5 36 01               724 	ld	(hl), #0x01
-   02C7 C3r12r03            725 	jp	00115$
-   02CA                     726 00106$:
-                            727 ;main.c:192: else if (keys & J_RIGHT && player_virtual_x < 170)
-   02CA CB 41               728 	bit	0, c
-   02CC CAr09r03            729 	jp	Z,00102$
-   02CF 21r32r00            730 	ld	hl, #_player_virtual_x
-   02D2 7E                  731 	ld	a, (hl)
-   02D3 D6 AA               732 	sub	a, #0xaa
-   02D5 23                  733 	inc	hl
-   02D6 7E                  734 	ld	a, (hl)
-   02D7 DE 00               735 	sbc	a, #0x00
-   02D9 56                  736 	ld	d, (hl)
-   02DA 3E 00               737 	ld	a, #0x00
-   02DC 5F                  738 	ld	e, a
-   02DD CB 7B               739 	bit	7, e
-   02DF 28 07               740 	jr	Z,00231$
-   02E1 CB 7A               741 	bit	7, d
-   02E3 20 08               742 	jr	NZ,00232$
-   02E5 BF                  743 	cp	a, a
-   02E6 18 05               744 	jr	00232$
-   02E8                     745 00231$:
-   02E8 CB 7A               746 	bit	7, d
-   02EA 28 01               747 	jr	Z,00232$
-   02EC 37                  748 	scf
-   02ED                     749 00232$:
-   02ED 30 1A               750 	jr	NC,00102$
-                            751 ;main.c:194: scroll_bkg(1, 0);
-   02EF C5                  752 	push	bc
-   02F0 AF                  753 	xor	a, a
-   02F1 F5                  754 	push	af
-   02F2 33                  755 	inc	sp
-   02F3 3E 01               756 	ld	a, #0x01
-   02F5 F5                  757 	push	af
-   02F6 33                  758 	inc	sp
-   02F7 CDr00r00            759 	call	_scroll_bkg
-   02FA E8 02               760 	add	sp, #2
-   02FC C1                  761 	pop	bc
-                            762 ;main.c:195: player_direction = PLAYER_DIRECTION_RIGHT;
-   02FD 21r36r00            763 	ld	hl, #_player_direction
-   0300 36 0C               764 	ld	(hl), #0x0c
-                            765 ;main.c:196: is_player_walking = 1;
-   0302 21r38r00            766 	ld	hl, #_is_player_walking
-   0305 36 01               767 	ld	(hl), #0x01
-   0307 18 09               768 	jr	00115$
-   0309                     769 00102$:
-                            770 ;main.c:200: is_player_walking = 0;
-   0309 21r38r00            771 	ld	hl, #_is_player_walking
-   030C 36 00               772 	ld	(hl), #0x00
-                            773 ;main.c:201: frame_skip = 1;  // On force le rafraîchissement de l'animation
-   030E F8 00               774 	ldhl	sp,	#0
-   0310 36 01               775 	ld	(hl), #0x01
-   0312                     776 00115$:
-                            777 ;main.c:204: if (keys & J_START)
-   0312 CB 79               778 	bit	7, c
-   0314 28 25               779 	jr	Z,00118$
-                            780 ;main.c:206: move_bkg(0, 0);
-   0316 AF                  781 	xor	a, a
-   0317 F5                  782 	push	af
-   0318 33                  783 	inc	sp
-   0319 AF                  784 	xor	a, a
-   031A F5                  785 	push	af
-   031B 33                  786 	inc	sp
-   031C CDr00r00            787 	call	_move_bkg
-   031F E8 02               788 	add	sp, #2
-                            789 ;main.c:207: player_x = 80;
-   0321 21r30r00            790 	ld	hl, #_player_x
-   0324 36 50               791 	ld	(hl), #0x50
-                            792 ;main.c:208: player_y = 72;
-   0326 21r31r00            793 	ld	hl, #_player_y
-   0329 36 48               794 	ld	(hl), #0x48
-                            795 ;main.c:209: player_virtual_x = 80;
-   032B 21r32r00            796 	ld	hl, #_player_virtual_x
-   032E 36 50               797 	ld	(hl), #0x50
-   0330 23                  798 	inc	hl
-   0331 36 00               799 	ld	(hl), #0x00
-                            800 ;main.c:210: player_virtual_y = 72;
-   0333 21r34r00            801 	ld	hl, #_player_virtual_y
-   0336 36 48               802 	ld	(hl), #0x48
-   0338 23                  803 	inc	hl
-   0339 36 00               804 	ld	(hl), #0x00
-   033B                     805 00118$:
-                            806 ;main.c:215: if (is_player_walking)
-   033B 21r38r00            807 	ld	hl, #_is_player_walking
-   033E 7E                  808 	ld	a, (hl)
-   033F B7                  809 	or	a, a
-   0340 CArCBr03            810 	jp	Z, 00134$
-                            811 ;main.c:224: if (player_direction == PLAYER_DIRECTION_RIGHT) player_virtual_x += 1;
-   0343 21r36r00            812 	ld	hl, #_player_direction
-   0346 7E                  813 	ld	a, (hl)
-   0347 D6 0C               814 	sub	a, #0x0c
-   0349 20 0C               815 	jr	NZ,00128$
-   034B 21r32r00            816 	ld	hl, #_player_virtual_x
-   034E 34                  817 	inc	(hl)
-   034F C2r92r03            818 	jp	NZ,00129$
-   0352 23                  819 	inc	hl
-   0353 34                  820 	inc	(hl)
-   0354 C3r92r03            821 	jp	00129$
-   0357                     822 00128$:
-                            823 ;main.c:225: else if (player_direction == PLAYER_DIRECTION_LEFT) player_virtual_x -= 1;
-   0357 21r36r00            824 	ld	hl, #_player_direction
-   035A 7E                  825 	ld	a, (hl)
-   035B D6 12               826 	sub	a, #0x12
-   035D 20 0E               827 	jr	NZ,00125$
-   035F 21r33r00            828 	ld	hl, #_player_virtual_x + 1
-   0362 2B                  829 	dec	hl
-   0363 5E                  830 	ld	e, (hl)
-   0364 23                  831 	inc	hl
-   0365 56                  832 	ld	d, (hl)
-   0366 1B                  833 	dec	de
-   0367 2B                  834 	dec	hl
-   0368 73                  835 	ld	(hl), e
-   0369 23                  836 	inc	hl
-   036A 72                  837 	ld	(hl), d
-   036B 18 25               838 	jr	00129$
-   036D                     839 00125$:
-                            840 ;main.c:226: else if (player_direction == PLAYER_DIRECTION_UP) player_virtual_y -= 1;
-   036D 21r36r00            841 	ld	hl, #_player_direction
-   0370 7E                  842 	ld	a, (hl)
-   0371 D6 06               843 	sub	a, #0x06
-   0373 20 0E               844 	jr	NZ,00122$
-   0375 21r35r00            845 	ld	hl, #_player_virtual_y + 1
-   0378 2B                  846 	dec	hl
-   0379 5E                  847 	ld	e, (hl)
-   037A 23                  848 	inc	hl
-   037B 56                  849 	ld	d, (hl)
-   037C 1B                  850 	dec	de
-   037D 2B                  851 	dec	hl
-   037E 73                  852 	ld	(hl), e
-   037F 23                  853 	inc	hl
-   0380 72                  854 	ld	(hl), d
-   0381 18 0F               855 	jr	00129$
-   0383                     856 00122$:
-                            857 ;main.c:227: else if (player_direction == PLAYER_DIRECTION_DOWN) player_virtual_y += 1;
-   0383 21r36r00            858 	ld	hl, #_player_direction
-   0386 7E                  859 	ld	a, (hl)
-   0387 B7                  860 	or	a, a
-   0388 20 08               861 	jr	NZ,00129$
-   038A 21r34r00            862 	ld	hl, #_player_virtual_y
-   038D 34                  863 	inc	(hl)
-   038E 20 02               864 	jr	NZ,00241$
-   0390 23                  865 	inc	hl
-   0391 34                  866 	inc	(hl)
-   0392                     867 00241$:
-   0392                     868 00129$:
-                            869 ;main.c:229: move_sprite(PLAYER_SPRITE_L_ID, player_x, player_y);
-   0392 21r31r00            870 	ld	hl, #_player_y
-   0395 7E                  871 	ld	a, (hl)
-   0396 F5                  872 	push	af
-   0397 33                  873 	inc	sp
-   0398 21r30r00            874 	ld	hl, #_player_x
-   039B 7E                  875 	ld	a, (hl)
-   039C F5                  876 	push	af
-   039D 33                  877 	inc	sp
-   039E AF                  878 	xor	a, a
-   039F F5                  879 	push	af
-   03A0 33                  880 	inc	sp
-   03A1 CDr00r00            881 	call	_move_sprite
-   03A4 E8 03               882 	add	sp, #3
-                            883 ;main.c:230: move_sprite(PLAYER_SPRITE_R_ID, player_x + 8, player_y);
-   03A6 21r30r00            884 	ld	hl, #_player_x
-   03A9 7E                  885 	ld	a, (hl)
-   03AA C6 08               886 	add	a, #0x08
-   03AC 47                  887 	ld	b, a
-   03AD 21r31r00            888 	ld	hl, #_player_y
-   03B0 7E                  889 	ld	a, (hl)
-   03B1 F5                  890 	push	af
-   03B2 33                  891 	inc	sp
-   03B3 C5                  892 	push	bc
-   03B4 33                  893 	inc	sp
-   03B5 3E 01               894 	ld	a, #0x01
-   03B7 F5                  895 	push	af
-   03B8 33                  896 	inc	sp
-   03B9 CDr00r00            897 	call	_move_sprite
-   03BC E8 03               898 	add	sp, #3
-                            899 ;main.c:235: frame_skip -= 1;
-   03BE F8 00               900 	ldhl	sp,	#0
-   03C0 7E                  901 	ld	a, (hl)
-   03C1 3D                  902 	dec	a
-   03C2 77                  903 	ld	(hl), a
-                            904 ;main.c:237: if (!frame_skip)
-   03C3 B7                  905 	or	a, a
-   03C4 C2r02r02            906 	jp	NZ, 00137$
-                            907 ;main.c:239: frame_skip = 8;
-   03C7 36 08               908 	ld	(hl), #0x08
-   03C9 18 05               909 	jr	00135$
-                            910 ;main.c:243: continue;
-   03CB                     911 00134$:
-                            912 ;main.c:248: player_animation_frame = 0;
-   03CB 21r37r00            913 	ld	hl, #_player_animation_frame
-   03CE 36 00               914 	ld	(hl), #0x00
-   03D0                     915 00135$:
-                            916 ;main.c:254: PLAYER_SPRITE_ANIM_L,
-                            917 ;main.c:253: PLAYER_SPRITE_L_ID,
-   03D0 21r37r00            918 	ld	hl, #_player_animation_frame
-   03D3 7E                  919 	ld	a, (hl)
-   03D4 F5                  920 	push	af
-   03D5 33                  921 	inc	sp
-   03D6 21r36r00            922 	ld	hl, #_player_direction
-   03D9 7E                  923 	ld	a, (hl)
-   03DA F5                  924 	push	af
-   03DB 33                  925 	inc	sp
-   03DC 21r00r00            926 	ld	hl, #_PLAYER_SPRITE_ANIM_L
-   03DF E5                  927 	push	hl
-   03E0 AF                  928 	xor	a, a
-   03E1 F5                  929 	push	af
-   03E2 33                  930 	inc	sp
-   03E3 CDr32r00            931 	call	_update_sprite_animation
-   03E6 E8 05               932 	add	sp, #5
-                            933 ;main.c:259: PLAYER_SPRITE_ANIM_R,
-                            934 ;main.c:258: PLAYER_SPRITE_R_ID,
-   03E8 21r37r00            935 	ld	hl, #_player_animation_frame
-   03EB 7E                  936 	ld	a, (hl)
-   03EC F5                  937 	push	af
-   03ED 33                  938 	inc	sp
-   03EE 21r36r00            939 	ld	hl, #_player_direction
-   03F1 7E                  940 	ld	a, (hl)
-   03F2 F5                  941 	push	af
-   03F3 33                  942 	inc	sp
-   03F4 21r18r00            943 	ld	hl, #_PLAYER_SPRITE_ANIM_R
-   03F7 E5                  944 	push	hl
-   03F8 3E 01               945 	ld	a, #0x01
-   03FA F5                  946 	push	af
-   03FB 33                  947 	inc	sp
-   03FC CDr32r00            948 	call	_update_sprite_animation
-   03FF E8 05               949 	add	sp, #5
-   0401 21r37r00            950 	ld	hl, #_player_animation_frame
-   0404 73                  951 	ld	(hl), e
-   0405 C3r02r02            952 	jp	00137$
-                            953 ;main.c:263: }
-   0408 33                  954 	inc	sp
-   0409 C9                  955 	ret
-                            956 	.area _CODE
-                            957 	.area _CABS (ABS)
+   0206 CDr00r00            595 	call	_joypad
+   0209 F8 01               596 	ldhl	sp,	#1
+   020B 73                  597 	ld	(hl), e
+                            598 ;main.c:174: if (keys & J_UP && player_virtual_y > 70 && player_virtual_y < 180)
+   020C 7E                  599 	ld	a, (hl)
+   020D E6 04               600 	and	a, #0x04
+   020F 23                  601 	inc	hl
+   0210 22                  602 	ld	(hl+), a
+   0211 36 00               603 	ld	(hl), #0x00
+   0213 21r34r00            604 	ld	hl, #_player_virtual_y
+   0216 3E 46               605 	ld	a, #0x46
+   0218 96                  606 	sub	a, (hl)
+   0219 23                  607 	inc	hl
+   021A 3E 00               608 	ld	a, #0x00
+   021C 9E                  609 	sbc	a, (hl)
+   021D 3E 00               610 	ld	a, #0x00
+   021F 57                  611 	ld	d, a
+   0220 5E                  612 	ld	e, (hl)
+   0221 CB 7B               613 	bit	7, e
+   0223 28 07               614 	jr	Z,00381$
+   0225 CB 7A               615 	bit	7, d
+   0227 20 08               616 	jr	NZ,00382$
+   0229 BF                  617 	cp	a, a
+   022A 18 05               618 	jr	00382$
+   022C                     619 00381$:
+   022C CB 7A               620 	bit	7, d
+   022E 28 01               621 	jr	Z,00382$
+   0230 37                  622 	scf
+   0231                     623 00382$:
+   0231 3E 00               624 	ld	a, #0x00
+   0233 17                  625 	rla
+   0234 4F                  626 	ld	c, a
+   0235 21r34r00            627 	ld	hl, #_player_virtual_y
+   0238 7E                  628 	ld	a, (hl)
+   0239 D6 B4               629 	sub	a, #0xb4
+   023B 23                  630 	inc	hl
+   023C 7E                  631 	ld	a, (hl)
+   023D DE 00               632 	sbc	a, #0x00
+   023F 56                  633 	ld	d, (hl)
+   0240 3E 00               634 	ld	a, #0x00
+   0242 5F                  635 	ld	e, a
+   0243 CB 7B               636 	bit	7, e
+   0245 28 07               637 	jr	Z,00383$
+   0247 CB 7A               638 	bit	7, d
+   0249 20 08               639 	jr	NZ,00384$
+   024B BF                  640 	cp	a, a
+   024C 18 05               641 	jr	00384$
+   024E                     642 00383$:
+   024E CB 7A               643 	bit	7, d
+   0250 28 01               644 	jr	Z,00384$
+   0252 37                  645 	scf
+   0253                     646 00384$:
+   0253 3E 00               647 	ld	a, #0x00
+   0255 17                  648 	rla
+   0256 F8 04               649 	ldhl	sp,	#4
+   0258 32                  650 	ld	(hl-), a
+   0259 3A                  651 	ld	a, (hl-)
+   025A B6                  652 	or	a, (hl)
+   025B 28 23               653 	jr	Z,00153$
+   025D 79                  654 	ld	a, c
+   025E B7                  655 	or	a, a
+   025F 28 1F               656 	jr	Z,00153$
+   0261 23                  657 	inc	hl
+   0262 23                  658 	inc	hl
+   0263 7E                  659 	ld	a, (hl)
+   0264 B7                  660 	or	a, a
+   0265 28 19               661 	jr	Z,00153$
+                            662 ;main.c:176: scroll_bkg(0, -1);
+   0267 3E FF               663 	ld	a, #0xff
+   0269 F5                  664 	push	af
+   026A 33                  665 	inc	sp
+   026B AF                  666 	xor	a, a
+   026C F5                  667 	push	af
+   026D 33                  668 	inc	sp
+   026E CDr00r00            669 	call	_scroll_bkg
+   0271 E8 02               670 	add	sp, #2
+                            671 ;main.c:177: player_direction = PLAYER_DIRECTION_UP;
+   0273 21r36r00            672 	ld	hl, #_player_direction
+   0276 36 06               673 	ld	(hl), #0x06
+                            674 ;main.c:178: is_player_walking = 1;
+   0278 21r38r00            675 	ld	hl, #_is_player_walking
+   027B 36 01               676 	ld	(hl), #0x01
+   027D C3rDEr04            677 	jp	00154$
+   0280                     678 00153$:
+                            679 ;main.c:183: player_y -= 1;
+   0280 E5                  680 	push	hl
+   0281 21r31r00            681 	ld	hl, #_player_y
+   0284 7E                  682 	ld	a, (hl)
+   0285 F8 07               683 	ldhl	sp,	#7
+   0287 77                  684 	ld	(hl), a
+   0288 E1                  685 	pop	hl
+   0289 F8 05               686 	ldhl	sp,	#5
+   028B 46                  687 	ld	b, (hl)
+   028C 05                  688 	dec	b
+                            689 ;main.c:181: else if (keys & J_UP && player_virtual_y <= 70 && player_virtual_y > 10)
+   028D 2B                  690 	dec	hl
+   028E 2B                  691 	dec	hl
+   028F 3A                  692 	ld	a, (hl-)
+   0290 B6                  693 	or	a, (hl)
+   0291 28 36               694 	jr	Z,00148$
+   0293 79                  695 	ld	a, c
+   0294 CB 47               696 	bit	0, a
+   0296 20 31               697 	jr	NZ,00148$
+   0298 21r34r00            698 	ld	hl, #_player_virtual_y
+   029B 3E 0A               699 	ld	a, #0x0a
+   029D 96                  700 	sub	a, (hl)
+   029E 23                  701 	inc	hl
+   029F 3E 00               702 	ld	a, #0x00
+   02A1 9E                  703 	sbc	a, (hl)
+   02A2 3E 00               704 	ld	a, #0x00
+   02A4 57                  705 	ld	d, a
+   02A5 5E                  706 	ld	e, (hl)
+   02A6 CB 7B               707 	bit	7, e
+   02A8 28 07               708 	jr	Z,00385$
+   02AA CB 7A               709 	bit	7, d
+   02AC 20 08               710 	jr	NZ,00386$
+   02AE BF                  711 	cp	a, a
+   02AF 18 05               712 	jr	00386$
+   02B1                     713 00385$:
+   02B1 CB 7A               714 	bit	7, d
+   02B3 28 01               715 	jr	Z,00386$
+   02B5 37                  716 	scf
+   02B6                     717 00386$:
+   02B6 30 11               718 	jr	NC,00148$
+                            719 ;main.c:183: player_y -= 1;
+   02B8 21r31r00            720 	ld	hl, #_player_y
+   02BB 70                  721 	ld	(hl), b
+                            722 ;main.c:184: player_direction = PLAYER_DIRECTION_UP;
+   02BC 21r36r00            723 	ld	hl, #_player_direction
+   02BF 36 06               724 	ld	(hl), #0x06
+                            725 ;main.c:185: is_player_walking = 1;
+   02C1 21r38r00            726 	ld	hl, #_is_player_walking
+   02C4 36 01               727 	ld	(hl), #0x01
+   02C6 C3rDEr04            728 	jp	00154$
+   02C9                     729 00148$:
+                            730 ;main.c:188: else if (keys & J_UP && player_virtual_y >= 180)
+   02C9 F8 03               731 	ldhl	sp,	#3
+   02CB 3A                  732 	ld	a, (hl-)
+   02CC B6                  733 	or	a, (hl)
+   02CD 28 18               734 	jr	Z,00144$
+   02CF 23                  735 	inc	hl
+   02D0 23                  736 	inc	hl
+   02D1 7E                  737 	ld	a, (hl)
+   02D2 CB 47               738 	bit	0, a
+   02D4 20 11               739 	jr	NZ,00144$
+                            740 ;main.c:190: player_y -= 1;
+   02D6 21r31r00            741 	ld	hl, #_player_y
+   02D9 70                  742 	ld	(hl), b
+                            743 ;main.c:191: player_direction = PLAYER_DIRECTION_UP;
+   02DA 21r36r00            744 	ld	hl, #_player_direction
+   02DD 36 06               745 	ld	(hl), #0x06
+                            746 ;main.c:192: is_player_walking = 1;
+   02DF 21r38r00            747 	ld	hl, #_is_player_walking
+   02E2 36 01               748 	ld	(hl), #0x01
+   02E4 C3rDEr04            749 	jp	00154$
+   02E7                     750 00144$:
+                            751 ;main.c:195: else if (keys & J_DOWN && player_virtual_y < 180 && player_virtual_y > 70)
+   02E7 F8 01               752 	ldhl	sp,	#1
+   02E9 7E                  753 	ld	a, (hl)
+   02EA E6 08               754 	and	a, #0x08
+   02EC 5F                  755 	ld	e, a
+   02ED 16 00               756 	ld	d, #0x00
+   02EF 7A                  757 	ld	a, d
+   02F0 B3                  758 	or	a, e
+   02F1 28 23               759 	jr	Z,00139$
+   02F3 F8 04               760 	ldhl	sp,	#4
+   02F5 7E                  761 	ld	a, (hl)
+   02F6 B7                  762 	or	a, a
+   02F7 28 1D               763 	jr	Z,00139$
+   02F9 79                  764 	ld	a, c
+   02FA B7                  765 	or	a, a
+   02FB 28 19               766 	jr	Z,00139$
+                            767 ;main.c:197: scroll_bkg(0, 1);
+   02FD 3E 01               768 	ld	a, #0x01
+   02FF F5                  769 	push	af
+   0300 33                  770 	inc	sp
+   0301 AF                  771 	xor	a, a
+   0302 F5                  772 	push	af
+   0303 33                  773 	inc	sp
+   0304 CDr00r00            774 	call	_scroll_bkg
+   0307 E8 02               775 	add	sp, #2
+                            776 ;main.c:198: player_direction = PLAYER_DIRECTION_DOWN;
+   0309 21r36r00            777 	ld	hl, #_player_direction
+   030C 36 00               778 	ld	(hl), #0x00
+                            779 ;main.c:199: is_player_walking = 1;
+   030E 21r38r00            780 	ld	hl, #_is_player_walking
+   0311 36 01               781 	ld	(hl), #0x01
+   0313 C3rDEr04            782 	jp	00154$
+   0316                     783 00139$:
+                            784 ;main.c:204: player_y += 1;
+   0316 F8 05               785 	ldhl	sp,	#5
+   0318 46                  786 	ld	b, (hl)
+   0319 04                  787 	inc	b
+                            788 ;main.c:202: else if (keys & J_DOWN && player_virtual_y <= 70)
+   031A 7A                  789 	ld	a, d
+   031B B3                  790 	or	a, e
+   031C 28 15               791 	jr	Z,00135$
+   031E CB 41               792 	bit	0, c
+   0320 20 11               793 	jr	NZ,00135$
+                            794 ;main.c:204: player_y += 1;
+   0322 21r31r00            795 	ld	hl, #_player_y
+   0325 70                  796 	ld	(hl), b
+                            797 ;main.c:205: player_direction = PLAYER_DIRECTION_DOWN;
+   0326 21r36r00            798 	ld	hl, #_player_direction
+   0329 36 00               799 	ld	(hl), #0x00
+                            800 ;main.c:206: is_player_walking = 1;
+   032B 21r38r00            801 	ld	hl, #_is_player_walking
+   032E 36 01               802 	ld	(hl), #0x01
+   0330 C3rDEr04            803 	jp	00154$
+   0333                     804 00135$:
+                            805 ;main.c:209: else if (keys & J_DOWN && player_virtual_y >= 180 && player_virtual_y <= 250)
+   0333 7A                  806 	ld	a, d
+   0334 B3                  807 	or	a, e
+   0335 28 38               808 	jr	Z,00130$
+   0337 F8 04               809 	ldhl	sp,	#4
+   0339 7E                  810 	ld	a, (hl)
+   033A CB 47               811 	bit	0, a
+   033C 20 31               812 	jr	NZ,00130$
+   033E 21r34r00            813 	ld	hl, #_player_virtual_y
+   0341 3E FA               814 	ld	a, #0xfa
+   0343 96                  815 	sub	a, (hl)
+   0344 23                  816 	inc	hl
+   0345 3E 00               817 	ld	a, #0x00
+   0347 9E                  818 	sbc	a, (hl)
+   0348 3E 00               819 	ld	a, #0x00
+   034A 57                  820 	ld	d, a
+   034B 5E                  821 	ld	e, (hl)
+   034C CB 7B               822 	bit	7, e
+   034E 28 07               823 	jr	Z,00387$
+   0350 CB 7A               824 	bit	7, d
+   0352 20 08               825 	jr	NZ,00388$
+   0354 BF                  826 	cp	a, a
+   0355 18 05               827 	jr	00388$
+   0357                     828 00387$:
+   0357 CB 7A               829 	bit	7, d
+   0359 28 01               830 	jr	Z,00388$
+   035B 37                  831 	scf
+   035C                     832 00388$:
+   035C 38 11               833 	jr	C,00130$
+                            834 ;main.c:211: player_y += 1;
+   035E 21r31r00            835 	ld	hl, #_player_y
+   0361 70                  836 	ld	(hl), b
+                            837 ;main.c:212: player_direction = PLAYER_DIRECTION_DOWN;
+   0362 21r36r00            838 	ld	hl, #_player_direction
+   0365 36 00               839 	ld	(hl), #0x00
+                            840 ;main.c:213: is_player_walking = 1;
+   0367 21r38r00            841 	ld	hl, #_is_player_walking
+   036A 36 01               842 	ld	(hl), #0x01
+   036C C3rDEr04            843 	jp	00154$
+   036F                     844 00130$:
+                            845 ;main.c:216: else if (keys & J_LEFT && player_virtual_x > 70 && player_virtual_x < 175)
+   036F F8 01               846 	ldhl	sp,	#1
+   0371 7E                  847 	ld	a, (hl)
+   0372 E6 02               848 	and	a, #0x02
+   0374 23                  849 	inc	hl
+   0375 22                  850 	ld	(hl+), a
+   0376 36 00               851 	ld	(hl), #0x00
+   0378 21r32r00            852 	ld	hl, #_player_virtual_x
+   037B 3E 46               853 	ld	a, #0x46
+   037D 96                  854 	sub	a, (hl)
+   037E 23                  855 	inc	hl
+   037F 3E 00               856 	ld	a, #0x00
+   0381 9E                  857 	sbc	a, (hl)
+   0382 3E 00               858 	ld	a, #0x00
+   0384 57                  859 	ld	d, a
+   0385 5E                  860 	ld	e, (hl)
+   0386 CB 7B               861 	bit	7, e
+   0388 28 07               862 	jr	Z,00389$
+   038A CB 7A               863 	bit	7, d
+   038C 20 08               864 	jr	NZ,00390$
+   038E BF                  865 	cp	a, a
+   038F 18 05               866 	jr	00390$
+   0391                     867 00389$:
+   0391 CB 7A               868 	bit	7, d
+   0393 28 01               869 	jr	Z,00390$
+   0395 37                  870 	scf
+   0396                     871 00390$:
+   0396 3E 00               872 	ld	a, #0x00
+   0398 17                  873 	rla
+   0399 F8 04               874 	ldhl	sp,	#4
+   039B 77                  875 	ld	(hl), a
+   039C 21r32r00            876 	ld	hl, #_player_virtual_x
+   039F 7E                  877 	ld	a, (hl)
+   03A0 D6 AF               878 	sub	a, #0xaf
+   03A2 23                  879 	inc	hl
+   03A3 7E                  880 	ld	a, (hl)
+   03A4 DE 00               881 	sbc	a, #0x00
+   03A6 56                  882 	ld	d, (hl)
+   03A7 3E 00               883 	ld	a, #0x00
+   03A9 5F                  884 	ld	e, a
+   03AA CB 7B               885 	bit	7, e
+   03AC 28 07               886 	jr	Z,00391$
+   03AE CB 7A               887 	bit	7, d
+   03B0 20 08               888 	jr	NZ,00392$
+   03B2 BF                  889 	cp	a, a
+   03B3 18 05               890 	jr	00392$
+   03B5                     891 00391$:
+   03B5 CB 7A               892 	bit	7, d
+   03B7 28 01               893 	jr	Z,00392$
+   03B9 37                  894 	scf
+   03BA                     895 00392$:
+   03BA 3E 00               896 	ld	a, #0x00
+   03BC 17                  897 	rla
+   03BD 4F                  898 	ld	c, a
+   03BE F8 03               899 	ldhl	sp,	#3
+   03C0 3A                  900 	ld	a, (hl-)
+   03C1 B6                  901 	or	a, (hl)
+   03C2 28 23               902 	jr	Z,00125$
+   03C4 23                  903 	inc	hl
+   03C5 23                  904 	inc	hl
+   03C6 7E                  905 	ld	a, (hl)
+   03C7 B7                  906 	or	a, a
+   03C8 28 1D               907 	jr	Z,00125$
+   03CA 79                  908 	ld	a, c
+   03CB B7                  909 	or	a, a
+   03CC 28 19               910 	jr	Z,00125$
+                            911 ;main.c:218: scroll_bkg(-1, 0);    
+   03CE AF                  912 	xor	a, a
+   03CF F5                  913 	push	af
+   03D0 33                  914 	inc	sp
+   03D1 3E FF               915 	ld	a, #0xff
+   03D3 F5                  916 	push	af
+   03D4 33                  917 	inc	sp
+   03D5 CDr00r00            918 	call	_scroll_bkg
+   03D8 E8 02               919 	add	sp, #2
+                            920 ;main.c:219: player_direction = PLAYER_DIRECTION_LEFT;
+   03DA 21r36r00            921 	ld	hl, #_player_direction
+   03DD 36 12               922 	ld	(hl), #0x12
+                            923 ;main.c:220: is_player_walking = 1;
+   03DF 21r38r00            924 	ld	hl, #_is_player_walking
+   03E2 36 01               925 	ld	(hl), #0x01
+   03E4 C3rDEr04            926 	jp	00154$
+   03E7                     927 00125$:
+                            928 ;main.c:162: move_sprite(PLAYER_SPRITE_R_ID, player_x + 8, player_y);
+   03E7 E5                  929 	push	hl
+   03E8 21r30r00            930 	ld	hl, #_player_x
+   03EB 7E                  931 	ld	a, (hl)
+   03EC F8 07               932 	ldhl	sp,	#7
+   03EE 77                  933 	ld	(hl), a
+   03EF E1                  934 	pop	hl
+                            935 ;main.c:225: player_x -= 1;    
+   03F0 F8 05               936 	ldhl	sp,	#5
+   03F2 46                  937 	ld	b, (hl)
+   03F3 05                  938 	dec	b
+                            939 ;main.c:223: else if (keys & J_LEFT && player_virtual_x <= 70 && player_virtual_x > -5)
+   03F4 2B                  940 	dec	hl
+   03F5 2B                  941 	dec	hl
+   03F6 3A                  942 	ld	a, (hl-)
+   03F7 B6                  943 	or	a, (hl)
+   03F8 CAr33r04            944 	jp	Z, 00120$
+   03FB 23                  945 	inc	hl
+   03FC 23                  946 	inc	hl
+   03FD 7E                  947 	ld	a, (hl)
+   03FE CB 47               948 	bit	0, a
+   0400 20 31               949 	jr	NZ,00120$
+   0402 21r32r00            950 	ld	hl, #_player_virtual_x
+   0405 3E FB               951 	ld	a, #0xfb
+   0407 96                  952 	sub	a, (hl)
+   0408 23                  953 	inc	hl
+   0409 3E FF               954 	ld	a, #0xff
+   040B 9E                  955 	sbc	a, (hl)
+   040C 3E FF               956 	ld	a, #0xff
+   040E 57                  957 	ld	d, a
+   040F 5E                  958 	ld	e, (hl)
+   0410 CB 7B               959 	bit	7, e
+   0412 28 07               960 	jr	Z,00393$
+   0414 CB 7A               961 	bit	7, d
+   0416 20 08               962 	jr	NZ,00394$
+   0418 BF                  963 	cp	a, a
+   0419 18 05               964 	jr	00394$
+   041B                     965 00393$:
+   041B CB 7A               966 	bit	7, d
+   041D 28 01               967 	jr	Z,00394$
+   041F 37                  968 	scf
+   0420                     969 00394$:
+   0420 30 11               970 	jr	NC,00120$
+                            971 ;main.c:225: player_x -= 1;    
+   0422 21r30r00            972 	ld	hl, #_player_x
+   0425 70                  973 	ld	(hl), b
+                            974 ;main.c:226: player_direction = PLAYER_DIRECTION_LEFT;
+   0426 21r36r00            975 	ld	hl, #_player_direction
+   0429 36 12               976 	ld	(hl), #0x12
+                            977 ;main.c:227: is_player_walking = 1;
+   042B 21r38r00            978 	ld	hl, #_is_player_walking
+   042E 36 01               979 	ld	(hl), #0x01
+   0430 C3rDEr04            980 	jp	00154$
+   0433                     981 00120$:
+                            982 ;main.c:230: else if (keys & J_LEFT && player_virtual_x >= 175)
+   0433 F8 03               983 	ldhl	sp,	#3
+   0435 3A                  984 	ld	a, (hl-)
+   0436 B6                  985 	or	a, (hl)
+   0437 28 16               986 	jr	Z,00116$
+   0439 79                  987 	ld	a, c
+   043A CB 47               988 	bit	0, a
+   043C 20 11               989 	jr	NZ,00116$
+                            990 ;main.c:232: player_x -= 1;    
+   043E 21r30r00            991 	ld	hl, #_player_x
+   0441 70                  992 	ld	(hl), b
+                            993 ;main.c:233: player_direction = PLAYER_DIRECTION_LEFT;
+   0442 21r36r00            994 	ld	hl, #_player_direction
+   0445 36 12               995 	ld	(hl), #0x12
+                            996 ;main.c:234: is_player_walking = 1;
+   0447 21r38r00            997 	ld	hl, #_is_player_walking
+   044A 36 01               998 	ld	(hl), #0x01
+   044C C3rDEr04            999 	jp	00154$
+   044F                    1000 00116$:
+                           1001 ;main.c:237: else if (keys & J_RIGHT && player_virtual_x < 175  && player_virtual_x > 70)
+   044F F8 01              1002 	ldhl	sp,	#1
+   0451 7E                 1003 	ld	a, (hl)
+   0452 E6 01              1004 	and	a, #0x01
+   0454 5F                 1005 	ld	e, a
+   0455 16 00              1006 	ld	d, #0x00
+   0457 7A                 1007 	ld	a, d
+   0458 B3                 1008 	or	a, e
+   0459 28 23              1009 	jr	Z,00111$
+   045B 79                 1010 	ld	a, c
+   045C B7                 1011 	or	a, a
+   045D 28 1F              1012 	jr	Z,00111$
+   045F F8 04              1013 	ldhl	sp,	#4
+   0461 7E                 1014 	ld	a, (hl)
+   0462 B7                 1015 	or	a, a
+   0463 28 19              1016 	jr	Z,00111$
+                           1017 ;main.c:239: scroll_bkg(1, 0);
+   0465 AF                 1018 	xor	a, a
+   0466 F5                 1019 	push	af
+   0467 33                 1020 	inc	sp
+   0468 3E 01              1021 	ld	a, #0x01
+   046A F5                 1022 	push	af
+   046B 33                 1023 	inc	sp
+   046C CDr00r00           1024 	call	_scroll_bkg
+   046F E8 02              1025 	add	sp, #2
+                           1026 ;main.c:240: player_direction = PLAYER_DIRECTION_RIGHT;
+   0471 21r36r00           1027 	ld	hl, #_player_direction
+   0474 36 0C              1028 	ld	(hl), #0x0c
+                           1029 ;main.c:241: is_player_walking = 1;
+   0476 21r38r00           1030 	ld	hl, #_is_player_walking
+   0479 36 01              1031 	ld	(hl), #0x01
+   047B C3rDEr04           1032 	jp	00154$
+   047E                    1033 00111$:
+                           1034 ;main.c:246: player_x += 1;
+   047E F8 05              1035 	ldhl	sp,	#5
+   0480 46                 1036 	ld	b, (hl)
+   0481 04                 1037 	inc	b
+                           1038 ;main.c:244: else if (keys & J_RIGHT && player_virtual_x <= 70)
+   0482 7A                 1039 	ld	a, d
+   0483 B3                 1040 	or	a, e
+   0484 28 17              1041 	jr	Z,00107$
+   0486 2B                 1042 	dec	hl
+   0487 7E                 1043 	ld	a, (hl)
+   0488 CB 47              1044 	bit	0, a
+   048A 20 11              1045 	jr	NZ,00107$
+                           1046 ;main.c:246: player_x += 1;
+   048C 21r30r00           1047 	ld	hl, #_player_x
+   048F 70                 1048 	ld	(hl), b
+                           1049 ;main.c:247: player_direction = PLAYER_DIRECTION_RIGHT;
+   0490 21r36r00           1050 	ld	hl, #_player_direction
+   0493 36 0C              1051 	ld	(hl), #0x0c
+                           1052 ;main.c:248: is_player_walking = 1;
+   0495 21r38r00           1053 	ld	hl, #_is_player_walking
+   0498 36 01              1054 	ld	(hl), #0x01
+   049A C3rDEr04           1055 	jp	00154$
+   049D                    1056 00107$:
+                           1057 ;main.c:251: else if (keys & J_RIGHT && player_virtual_x >= 175 && player_virtual_x < 250)
+   049D 7A                 1058 	ld	a, d
+   049E B3                 1059 	or	a, e
+   049F 28 34              1060 	jr	Z,00102$
+   04A1 CB 41              1061 	bit	0, c
+   04A3 20 30              1062 	jr	NZ,00102$
+   04A5 21r32r00           1063 	ld	hl, #_player_virtual_x
+   04A8 7E                 1064 	ld	a, (hl)
+   04A9 D6 FA              1065 	sub	a, #0xfa
+   04AB 23                 1066 	inc	hl
+   04AC 7E                 1067 	ld	a, (hl)
+   04AD DE 00              1068 	sbc	a, #0x00
+   04AF 56                 1069 	ld	d, (hl)
+   04B0 3E 00              1070 	ld	a, #0x00
+   04B2 5F                 1071 	ld	e, a
+   04B3 CB 7B              1072 	bit	7, e
+   04B5 28 07              1073 	jr	Z,00395$
+   04B7 CB 7A              1074 	bit	7, d
+   04B9 20 08              1075 	jr	NZ,00396$
+   04BB BF                 1076 	cp	a, a
+   04BC 18 05              1077 	jr	00396$
+   04BE                    1078 00395$:
+   04BE CB 7A              1079 	bit	7, d
+   04C0 28 01              1080 	jr	Z,00396$
+   04C2 37                 1081 	scf
+   04C3                    1082 00396$:
+   04C3 30 10              1083 	jr	NC,00102$
+                           1084 ;main.c:253: player_x += 1;
+   04C5 21r30r00           1085 	ld	hl, #_player_x
+   04C8 70                 1086 	ld	(hl), b
+                           1087 ;main.c:254: player_direction = PLAYER_DIRECTION_RIGHT;
+   04C9 21r36r00           1088 	ld	hl, #_player_direction
+   04CC 36 0C              1089 	ld	(hl), #0x0c
+                           1090 ;main.c:255: is_player_walking = 1;
+   04CE 21r38r00           1091 	ld	hl, #_is_player_walking
+   04D1 36 01              1092 	ld	(hl), #0x01
+   04D3 18 09              1093 	jr	00154$
+   04D5                    1094 00102$:
+                           1095 ;main.c:260: is_player_walking = 0;
+   04D5 21r38r00           1096 	ld	hl, #_is_player_walking
+   04D8 36 00              1097 	ld	(hl), #0x00
+                           1098 ;main.c:261: frame_skip = 1;  // On force le rafraîchissement de l'animation
+   04DA F8 00              1099 	ldhl	sp,	#0
+   04DC 36 01              1100 	ld	(hl), #0x01
+   04DE                    1101 00154$:
+                           1102 ;main.c:264: if (keys & J_START)
+   04DE F8 01              1103 	ldhl	sp,	#1
+   04E0 CB 7E              1104 	bit	7, (hl)
+   04E2 28 25              1105 	jr	Z,00158$
+                           1106 ;main.c:266: move_bkg(0, 0);
+   04E4 AF                 1107 	xor	a, a
+   04E5 F5                 1108 	push	af
+   04E6 33                 1109 	inc	sp
+   04E7 AF                 1110 	xor	a, a
+   04E8 F5                 1111 	push	af
+   04E9 33                 1112 	inc	sp
+   04EA CDr00r00           1113 	call	_move_bkg
+   04ED E8 02              1114 	add	sp, #2
+                           1115 ;main.c:267: player_x = 80;
+   04EF 21r30r00           1116 	ld	hl, #_player_x
+   04F2 36 50              1117 	ld	(hl), #0x50
+                           1118 ;main.c:268: player_y = 72;
+   04F4 21r31r00           1119 	ld	hl, #_player_y
+   04F7 36 48              1120 	ld	(hl), #0x48
+                           1121 ;main.c:269: player_virtual_x = 80;
+   04F9 21r32r00           1122 	ld	hl, #_player_virtual_x
+   04FC 36 50              1123 	ld	(hl), #0x50
+   04FE 23                 1124 	inc	hl
+   04FF 36 00              1125 	ld	(hl), #0x00
+                           1126 ;main.c:270: player_virtual_y = 72;
+   0501 21r34r00           1127 	ld	hl, #_player_virtual_y
+   0504 36 48              1128 	ld	(hl), #0x48
+   0506 23                 1129 	inc	hl
+   0507 36 00              1130 	ld	(hl), #0x00
+   0509                    1131 00158$:
+                           1132 ;main.c:275: if (is_player_walking)
+   0509 21r38r00           1133 	ld	hl, #_is_player_walking
+   050C 7E                 1134 	ld	a, (hl)
+   050D B7                 1135 	or	a, a
+   050E CAr99r05           1136 	jp	Z, 00174$
+                           1137 ;main.c:284: if (player_direction == PLAYER_DIRECTION_RIGHT) player_virtual_x += 1;
+   0511 21r36r00           1138 	ld	hl, #_player_direction
+   0514 7E                 1139 	ld	a, (hl)
+   0515 D6 0C              1140 	sub	a, #0x0c
+   0517 20 0C              1141 	jr	NZ,00168$
+   0519 21r32r00           1142 	ld	hl, #_player_virtual_x
+   051C 34                 1143 	inc	(hl)
+   051D C2r60r05           1144 	jp	NZ,00169$
+   0520 23                 1145 	inc	hl
+   0521 34                 1146 	inc	(hl)
+   0522 C3r60r05           1147 	jp	00169$
+   0525                    1148 00168$:
+                           1149 ;main.c:285: else if (player_direction == PLAYER_DIRECTION_LEFT) player_virtual_x -= 1;
+   0525 21r36r00           1150 	ld	hl, #_player_direction
+   0528 7E                 1151 	ld	a, (hl)
+   0529 D6 12              1152 	sub	a, #0x12
+   052B 20 0E              1153 	jr	NZ,00165$
+   052D 21r33r00           1154 	ld	hl, #_player_virtual_x + 1
+   0530 2B                 1155 	dec	hl
+   0531 5E                 1156 	ld	e, (hl)
+   0532 23                 1157 	inc	hl
+   0533 56                 1158 	ld	d, (hl)
+   0534 1B                 1159 	dec	de
+   0535 2B                 1160 	dec	hl
+   0536 73                 1161 	ld	(hl), e
+   0537 23                 1162 	inc	hl
+   0538 72                 1163 	ld	(hl), d
+   0539 18 25              1164 	jr	00169$
+   053B                    1165 00165$:
+                           1166 ;main.c:286: else if (player_direction == PLAYER_DIRECTION_UP) player_virtual_y -= 1;
+   053B 21r36r00           1167 	ld	hl, #_player_direction
+   053E 7E                 1168 	ld	a, (hl)
+   053F D6 06              1169 	sub	a, #0x06
+   0541 20 0E              1170 	jr	NZ,00162$
+   0543 21r35r00           1171 	ld	hl, #_player_virtual_y + 1
+   0546 2B                 1172 	dec	hl
+   0547 5E                 1173 	ld	e, (hl)
+   0548 23                 1174 	inc	hl
+   0549 56                 1175 	ld	d, (hl)
+   054A 1B                 1176 	dec	de
+   054B 2B                 1177 	dec	hl
+   054C 73                 1178 	ld	(hl), e
+   054D 23                 1179 	inc	hl
+   054E 72                 1180 	ld	(hl), d
+   054F 18 0F              1181 	jr	00169$
+   0551                    1182 00162$:
+                           1183 ;main.c:287: else if (player_direction == PLAYER_DIRECTION_DOWN) player_virtual_y += 1;
+   0551 21r36r00           1184 	ld	hl, #_player_direction
+   0554 7E                 1185 	ld	a, (hl)
+   0555 B7                 1186 	or	a, a
+   0556 20 08              1187 	jr	NZ,00169$
+   0558 21r34r00           1188 	ld	hl, #_player_virtual_y
+   055B 34                 1189 	inc	(hl)
+   055C 20 02              1190 	jr	NZ,00405$
+   055E 23                 1191 	inc	hl
+   055F 34                 1192 	inc	(hl)
+   0560                    1193 00405$:
+   0560                    1194 00169$:
+                           1195 ;main.c:289: move_sprite(PLAYER_SPRITE_L_ID, player_x, player_y);
+   0560 21r31r00           1196 	ld	hl, #_player_y
+   0563 7E                 1197 	ld	a, (hl)
+   0564 F5                 1198 	push	af
+   0565 33                 1199 	inc	sp
+   0566 21r30r00           1200 	ld	hl, #_player_x
+   0569 7E                 1201 	ld	a, (hl)
+   056A F5                 1202 	push	af
+   056B 33                 1203 	inc	sp
+   056C AF                 1204 	xor	a, a
+   056D F5                 1205 	push	af
+   056E 33                 1206 	inc	sp
+   056F CDr00r00           1207 	call	_move_sprite
+   0572 E8 03              1208 	add	sp, #3
+                           1209 ;main.c:290: move_sprite(PLAYER_SPRITE_R_ID, player_x + 8, player_y);
+   0574 21r30r00           1210 	ld	hl, #_player_x
+   0577 7E                 1211 	ld	a, (hl)
+   0578 C6 08              1212 	add	a, #0x08
+   057A 47                 1213 	ld	b, a
+   057B 21r31r00           1214 	ld	hl, #_player_y
+   057E 7E                 1215 	ld	a, (hl)
+   057F F5                 1216 	push	af
+   0580 33                 1217 	inc	sp
+   0581 C5                 1218 	push	bc
+   0582 33                 1219 	inc	sp
+   0583 3E 01              1220 	ld	a, #0x01
+   0585 F5                 1221 	push	af
+   0586 33                 1222 	inc	sp
+   0587 CDr00r00           1223 	call	_move_sprite
+   058A E8 03              1224 	add	sp, #3
+                           1225 ;main.c:295: frame_skip -= 1;
+   058C F8 00              1226 	ldhl	sp,	#0
+   058E 7E                 1227 	ld	a, (hl)
+   058F 3D                 1228 	dec	a
+   0590 77                 1229 	ld	(hl), a
+                           1230 ;main.c:297: if (!frame_skip)
+   0591 B7                 1231 	or	a, a
+   0592 C2r03r02           1232 	jp	NZ, 00177$
+                           1233 ;main.c:299: frame_skip = 8;
+   0595 36 08              1234 	ld	(hl), #0x08
+   0597 18 05              1235 	jr	00175$
+                           1236 ;main.c:303: continue;
+   0599                    1237 00174$:
+                           1238 ;main.c:308: player_animation_frame = 0;
+   0599 21r37r00           1239 	ld	hl, #_player_animation_frame
+   059C 36 00              1240 	ld	(hl), #0x00
+   059E                    1241 00175$:
+                           1242 ;main.c:314: PLAYER_SPRITE_ANIM_L,
+                           1243 ;main.c:313: PLAYER_SPRITE_L_ID,
+   059E 21r37r00           1244 	ld	hl, #_player_animation_frame
+   05A1 7E                 1245 	ld	a, (hl)
+   05A2 F5                 1246 	push	af
+   05A3 33                 1247 	inc	sp
+   05A4 21r36r00           1248 	ld	hl, #_player_direction
+   05A7 7E                 1249 	ld	a, (hl)
+   05A8 F5                 1250 	push	af
+   05A9 33                 1251 	inc	sp
+   05AA 21r00r00           1252 	ld	hl, #_PLAYER_SPRITE_ANIM_L
+   05AD E5                 1253 	push	hl
+   05AE AF                 1254 	xor	a, a
+   05AF F5                 1255 	push	af
+   05B0 33                 1256 	inc	sp
+   05B1 CDr32r00           1257 	call	_update_sprite_animation
+   05B4 E8 05              1258 	add	sp, #5
+                           1259 ;main.c:319: PLAYER_SPRITE_ANIM_R,
+                           1260 ;main.c:318: PLAYER_SPRITE_R_ID,
+   05B6 21r37r00           1261 	ld	hl, #_player_animation_frame
+   05B9 7E                 1262 	ld	a, (hl)
+   05BA F5                 1263 	push	af
+   05BB 33                 1264 	inc	sp
+   05BC 21r36r00           1265 	ld	hl, #_player_direction
+   05BF 7E                 1266 	ld	a, (hl)
+   05C0 F5                 1267 	push	af
+   05C1 33                 1268 	inc	sp
+   05C2 21r18r00           1269 	ld	hl, #_PLAYER_SPRITE_ANIM_R
+   05C5 E5                 1270 	push	hl
+   05C6 3E 01              1271 	ld	a, #0x01
+   05C8 F5                 1272 	push	af
+   05C9 33                 1273 	inc	sp
+   05CA CDr32r00           1274 	call	_update_sprite_animation
+   05CD E8 05              1275 	add	sp, #5
+   05CF 21r37r00           1276 	ld	hl, #_player_animation_frame
+   05D2 73                 1277 	ld	(hl), e
+   05D3 C3r03r02           1278 	jp	00177$
+                           1279 ;main.c:323: }
+   05D6 E8 06              1280 	add	sp, #6
+   05D8 C9                 1281 	ret
+                           1282 	.area _CODE
+                           1283 	.area _CABS (ABS)

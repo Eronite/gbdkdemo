@@ -449,7 +449,7 @@ _clear_screen::
 ; Function main
 ; ---------------------------------
 _main::
-	dec	sp
+	add	sp, #-6
 ;main.c:122: title_screen();
 	call	_title_screen
 ;main.c:123: clear_screen();
@@ -588,16 +588,19 @@ _main::
 	call	_set_sprite_prop
 	add	sp, #2
 ;main.c:165: while (1)
-00137$:
+00177$:
 ;main.c:168: wait_vbl_done();
 	call	_wait_vbl_done
 ;main.c:172: keys = joypad();
 	call	_joypad
-	ld	a, e
-	ld	c, a
-;main.c:174: if (keys & J_UP && player_virtual_y > 70)
-	bit	2, c
-	jp	Z,00114$
+	ldhl	sp,	#1
+	ld	(hl), e
+;main.c:174: if (keys & J_UP && player_virtual_y > 70 && player_virtual_y < 180)
+	ld	a, (hl)
+	and	a, #0x04
+	inc	hl
+	ld	(hl+), a
+	ld	(hl), #0x00
 	ld	hl, #_player_virtual_y
 	ld	a, #0x46
 	sub	a, (hl)
@@ -608,19 +611,55 @@ _main::
 	ld	d, a
 	ld	e, (hl)
 	bit	7, e
-	jr	Z,00222$
+	jr	Z,00381$
 	bit	7, d
-	jr	NZ,00223$
+	jr	NZ,00382$
 	cp	a, a
-	jr	00223$
-00222$:
+	jr	00382$
+00381$:
 	bit	7, d
-	jr	Z,00223$
+	jr	Z,00382$
 	scf
-00223$:
-	jr	NC,00114$
+00382$:
+	ld	a, #0x00
+	rla
+	ld	c, a
+	ld	hl, #_player_virtual_y
+	ld	a, (hl)
+	sub	a, #0xb4
+	inc	hl
+	ld	a, (hl)
+	sbc	a, #0x00
+	ld	d, (hl)
+	ld	a, #0x00
+	ld	e, a
+	bit	7, e
+	jr	Z,00383$
+	bit	7, d
+	jr	NZ,00384$
+	cp	a, a
+	jr	00384$
+00383$:
+	bit	7, d
+	jr	Z,00384$
+	scf
+00384$:
+	ld	a, #0x00
+	rla
+	ldhl	sp,	#4
+	ld	(hl-), a
+	ld	a, (hl-)
+	or	a, (hl)
+	jr	Z,00153$
+	ld	a, c
+	or	a, a
+	jr	Z,00153$
+	inc	hl
+	inc	hl
+	ld	a, (hl)
+	or	a, a
+	jr	Z,00153$
 ;main.c:176: scroll_bkg(0, -1);
-	push	bc
 	ld	a, #0xff
 	push	af
 	inc	sp
@@ -629,41 +668,103 @@ _main::
 	inc	sp
 	call	_scroll_bkg
 	add	sp, #2
-	pop	bc
 ;main.c:177: player_direction = PLAYER_DIRECTION_UP;
 	ld	hl, #_player_direction
 	ld	(hl), #0x06
 ;main.c:178: is_player_walking = 1;
 	ld	hl, #_is_player_walking
 	ld	(hl), #0x01
-	jp	00115$
-00114$:
-;main.c:180: else if (keys & J_DOWN && player_virtual_y < 190)
-	bit	3, c
-	jp	Z,00110$
-	ld	hl, #_player_virtual_y
+	jp	00154$
+00153$:
+;main.c:183: player_y -= 1;
+	push	hl
+	ld	hl, #_player_y
 	ld	a, (hl)
-	sub	a, #0xbe
+	ldhl	sp,	#7
+	ld	(hl), a
+	pop	hl
+	ldhl	sp,	#5
+	ld	b, (hl)
+	dec	b
+;main.c:181: else if (keys & J_UP && player_virtual_y <= 70 && player_virtual_y > 10)
+	dec	hl
+	dec	hl
+	ld	a, (hl-)
+	or	a, (hl)
+	jr	Z,00148$
+	ld	a, c
+	bit	0, a
+	jr	NZ,00148$
+	ld	hl, #_player_virtual_y
+	ld	a, #0x0a
+	sub	a, (hl)
+	inc	hl
+	ld	a, #0x00
+	sbc	a, (hl)
+	ld	a, #0x00
+	ld	d, a
+	ld	e, (hl)
+	bit	7, e
+	jr	Z,00385$
+	bit	7, d
+	jr	NZ,00386$
+	cp	a, a
+	jr	00386$
+00385$:
+	bit	7, d
+	jr	Z,00386$
+	scf
+00386$:
+	jr	NC,00148$
+;main.c:183: player_y -= 1;
+	ld	hl, #_player_y
+	ld	(hl), b
+;main.c:184: player_direction = PLAYER_DIRECTION_UP;
+	ld	hl, #_player_direction
+	ld	(hl), #0x06
+;main.c:185: is_player_walking = 1;
+	ld	hl, #_is_player_walking
+	ld	(hl), #0x01
+	jp	00154$
+00148$:
+;main.c:188: else if (keys & J_UP && player_virtual_y >= 180)
+	ldhl	sp,	#3
+	ld	a, (hl-)
+	or	a, (hl)
+	jr	Z,00144$
+	inc	hl
 	inc	hl
 	ld	a, (hl)
-	sbc	a, #0x00
-	ld	d, (hl)
-	ld	a, #0x00
+	bit	0, a
+	jr	NZ,00144$
+;main.c:190: player_y -= 1;
+	ld	hl, #_player_y
+	ld	(hl), b
+;main.c:191: player_direction = PLAYER_DIRECTION_UP;
+	ld	hl, #_player_direction
+	ld	(hl), #0x06
+;main.c:192: is_player_walking = 1;
+	ld	hl, #_is_player_walking
+	ld	(hl), #0x01
+	jp	00154$
+00144$:
+;main.c:195: else if (keys & J_DOWN && player_virtual_y < 180 && player_virtual_y > 70)
+	ldhl	sp,	#1
+	ld	a, (hl)
+	and	a, #0x08
 	ld	e, a
-	bit	7, e
-	jr	Z,00225$
-	bit	7, d
-	jr	NZ,00226$
-	cp	a, a
-	jr	00226$
-00225$:
-	bit	7, d
-	jr	Z,00226$
-	scf
-00226$:
-	jr	NC,00110$
-;main.c:182: scroll_bkg(0, 1);
-	push	bc
+	ld	d, #0x00
+	ld	a, d
+	or	a, e
+	jr	Z,00139$
+	ldhl	sp,	#4
+	ld	a, (hl)
+	or	a, a
+	jr	Z,00139$
+	ld	a, c
+	or	a, a
+	jr	Z,00139$
+;main.c:197: scroll_bkg(0, 1);
 	ld	a, #0x01
 	push	af
 	inc	sp
@@ -672,18 +773,82 @@ _main::
 	inc	sp
 	call	_scroll_bkg
 	add	sp, #2
-	pop	bc
-;main.c:183: player_direction = PLAYER_DIRECTION_DOWN;
+;main.c:198: player_direction = PLAYER_DIRECTION_DOWN;
 	ld	hl, #_player_direction
 	ld	(hl), #0x00
-;main.c:184: is_player_walking = 1;
+;main.c:199: is_player_walking = 1;
 	ld	hl, #_is_player_walking
 	ld	(hl), #0x01
-	jp	00115$
-00110$:
-;main.c:186: else if (keys & J_LEFT && player_virtual_x > 70)
-	bit	1, c
-	jp	Z,00106$
+	jp	00154$
+00139$:
+;main.c:204: player_y += 1;
+	ldhl	sp,	#5
+	ld	b, (hl)
+	inc	b
+;main.c:202: else if (keys & J_DOWN && player_virtual_y <= 70)
+	ld	a, d
+	or	a, e
+	jr	Z,00135$
+	bit	0, c
+	jr	NZ,00135$
+;main.c:204: player_y += 1;
+	ld	hl, #_player_y
+	ld	(hl), b
+;main.c:205: player_direction = PLAYER_DIRECTION_DOWN;
+	ld	hl, #_player_direction
+	ld	(hl), #0x00
+;main.c:206: is_player_walking = 1;
+	ld	hl, #_is_player_walking
+	ld	(hl), #0x01
+	jp	00154$
+00135$:
+;main.c:209: else if (keys & J_DOWN && player_virtual_y >= 180 && player_virtual_y <= 250)
+	ld	a, d
+	or	a, e
+	jr	Z,00130$
+	ldhl	sp,	#4
+	ld	a, (hl)
+	bit	0, a
+	jr	NZ,00130$
+	ld	hl, #_player_virtual_y
+	ld	a, #0xfa
+	sub	a, (hl)
+	inc	hl
+	ld	a, #0x00
+	sbc	a, (hl)
+	ld	a, #0x00
+	ld	d, a
+	ld	e, (hl)
+	bit	7, e
+	jr	Z,00387$
+	bit	7, d
+	jr	NZ,00388$
+	cp	a, a
+	jr	00388$
+00387$:
+	bit	7, d
+	jr	Z,00388$
+	scf
+00388$:
+	jr	C,00130$
+;main.c:211: player_y += 1;
+	ld	hl, #_player_y
+	ld	(hl), b
+;main.c:212: player_direction = PLAYER_DIRECTION_DOWN;
+	ld	hl, #_player_direction
+	ld	(hl), #0x00
+;main.c:213: is_player_walking = 1;
+	ld	hl, #_is_player_walking
+	ld	(hl), #0x01
+	jp	00154$
+00130$:
+;main.c:216: else if (keys & J_LEFT && player_virtual_x > 70 && player_virtual_x < 175)
+	ldhl	sp,	#1
+	ld	a, (hl)
+	and	a, #0x02
+	inc	hl
+	ld	(hl+), a
+	ld	(hl), #0x00
 	ld	hl, #_player_virtual_x
 	ld	a, #0x46
 	sub	a, (hl)
@@ -694,19 +859,56 @@ _main::
 	ld	d, a
 	ld	e, (hl)
 	bit	7, e
-	jr	Z,00228$
+	jr	Z,00389$
 	bit	7, d
-	jr	NZ,00229$
+	jr	NZ,00390$
 	cp	a, a
-	jr	00229$
-00228$:
+	jr	00390$
+00389$:
 	bit	7, d
-	jr	Z,00229$
+	jr	Z,00390$
 	scf
-00229$:
-	jr	NC,00106$
-;main.c:188: scroll_bkg(-1, 0);    
-	push	bc
+00390$:
+	ld	a, #0x00
+	rla
+	ldhl	sp,	#4
+	ld	(hl), a
+	ld	hl, #_player_virtual_x
+	ld	a, (hl)
+	sub	a, #0xaf
+	inc	hl
+	ld	a, (hl)
+	sbc	a, #0x00
+	ld	d, (hl)
+	ld	a, #0x00
+	ld	e, a
+	bit	7, e
+	jr	Z,00391$
+	bit	7, d
+	jr	NZ,00392$
+	cp	a, a
+	jr	00392$
+00391$:
+	bit	7, d
+	jr	Z,00392$
+	scf
+00392$:
+	ld	a, #0x00
+	rla
+	ld	c, a
+	ldhl	sp,	#3
+	ld	a, (hl-)
+	or	a, (hl)
+	jr	Z,00125$
+	inc	hl
+	inc	hl
+	ld	a, (hl)
+	or	a, a
+	jr	Z,00125$
+	ld	a, c
+	or	a, a
+	jr	Z,00125$
+;main.c:218: scroll_bkg(-1, 0);    
 	xor	a, a
 	push	af
 	inc	sp
@@ -715,41 +917,104 @@ _main::
 	inc	sp
 	call	_scroll_bkg
 	add	sp, #2
-	pop	bc
-;main.c:189: player_direction = PLAYER_DIRECTION_LEFT;
+;main.c:219: player_direction = PLAYER_DIRECTION_LEFT;
 	ld	hl, #_player_direction
 	ld	(hl), #0x12
-;main.c:190: is_player_walking = 1;
+;main.c:220: is_player_walking = 1;
 	ld	hl, #_is_player_walking
 	ld	(hl), #0x01
-	jp	00115$
-00106$:
-;main.c:192: else if (keys & J_RIGHT && player_virtual_x < 170)
-	bit	0, c
-	jp	Z,00102$
-	ld	hl, #_player_virtual_x
+	jp	00154$
+00125$:
+;main.c:162: move_sprite(PLAYER_SPRITE_R_ID, player_x + 8, player_y);
+	push	hl
+	ld	hl, #_player_x
 	ld	a, (hl)
-	sub	a, #0xaa
+	ldhl	sp,	#7
+	ld	(hl), a
+	pop	hl
+;main.c:225: player_x -= 1;    
+	ldhl	sp,	#5
+	ld	b, (hl)
+	dec	b
+;main.c:223: else if (keys & J_LEFT && player_virtual_x <= 70 && player_virtual_x > -5)
+	dec	hl
+	dec	hl
+	ld	a, (hl-)
+	or	a, (hl)
+	jp	Z, 00120$
+	inc	hl
 	inc	hl
 	ld	a, (hl)
-	sbc	a, #0x00
-	ld	d, (hl)
-	ld	a, #0x00
-	ld	e, a
+	bit	0, a
+	jr	NZ,00120$
+	ld	hl, #_player_virtual_x
+	ld	a, #0xfb
+	sub	a, (hl)
+	inc	hl
+	ld	a, #0xff
+	sbc	a, (hl)
+	ld	a, #0xff
+	ld	d, a
+	ld	e, (hl)
 	bit	7, e
-	jr	Z,00231$
+	jr	Z,00393$
 	bit	7, d
-	jr	NZ,00232$
+	jr	NZ,00394$
 	cp	a, a
-	jr	00232$
-00231$:
+	jr	00394$
+00393$:
 	bit	7, d
-	jr	Z,00232$
+	jr	Z,00394$
 	scf
-00232$:
-	jr	NC,00102$
-;main.c:194: scroll_bkg(1, 0);
-	push	bc
+00394$:
+	jr	NC,00120$
+;main.c:225: player_x -= 1;    
+	ld	hl, #_player_x
+	ld	(hl), b
+;main.c:226: player_direction = PLAYER_DIRECTION_LEFT;
+	ld	hl, #_player_direction
+	ld	(hl), #0x12
+;main.c:227: is_player_walking = 1;
+	ld	hl, #_is_player_walking
+	ld	(hl), #0x01
+	jp	00154$
+00120$:
+;main.c:230: else if (keys & J_LEFT && player_virtual_x >= 175)
+	ldhl	sp,	#3
+	ld	a, (hl-)
+	or	a, (hl)
+	jr	Z,00116$
+	ld	a, c
+	bit	0, a
+	jr	NZ,00116$
+;main.c:232: player_x -= 1;    
+	ld	hl, #_player_x
+	ld	(hl), b
+;main.c:233: player_direction = PLAYER_DIRECTION_LEFT;
+	ld	hl, #_player_direction
+	ld	(hl), #0x12
+;main.c:234: is_player_walking = 1;
+	ld	hl, #_is_player_walking
+	ld	(hl), #0x01
+	jp	00154$
+00116$:
+;main.c:237: else if (keys & J_RIGHT && player_virtual_x < 175  && player_virtual_x > 70)
+	ldhl	sp,	#1
+	ld	a, (hl)
+	and	a, #0x01
+	ld	e, a
+	ld	d, #0x00
+	ld	a, d
+	or	a, e
+	jr	Z,00111$
+	ld	a, c
+	or	a, a
+	jr	Z,00111$
+	ldhl	sp,	#4
+	ld	a, (hl)
+	or	a, a
+	jr	Z,00111$
+;main.c:239: scroll_bkg(1, 0);
 	xor	a, a
 	push	af
 	inc	sp
@@ -758,26 +1023,87 @@ _main::
 	inc	sp
 	call	_scroll_bkg
 	add	sp, #2
-	pop	bc
-;main.c:195: player_direction = PLAYER_DIRECTION_RIGHT;
+;main.c:240: player_direction = PLAYER_DIRECTION_RIGHT;
 	ld	hl, #_player_direction
 	ld	(hl), #0x0c
-;main.c:196: is_player_walking = 1;
+;main.c:241: is_player_walking = 1;
 	ld	hl, #_is_player_walking
 	ld	(hl), #0x01
-	jr	00115$
+	jp	00154$
+00111$:
+;main.c:246: player_x += 1;
+	ldhl	sp,	#5
+	ld	b, (hl)
+	inc	b
+;main.c:244: else if (keys & J_RIGHT && player_virtual_x <= 70)
+	ld	a, d
+	or	a, e
+	jr	Z,00107$
+	dec	hl
+	ld	a, (hl)
+	bit	0, a
+	jr	NZ,00107$
+;main.c:246: player_x += 1;
+	ld	hl, #_player_x
+	ld	(hl), b
+;main.c:247: player_direction = PLAYER_DIRECTION_RIGHT;
+	ld	hl, #_player_direction
+	ld	(hl), #0x0c
+;main.c:248: is_player_walking = 1;
+	ld	hl, #_is_player_walking
+	ld	(hl), #0x01
+	jp	00154$
+00107$:
+;main.c:251: else if (keys & J_RIGHT && player_virtual_x >= 175 && player_virtual_x < 250)
+	ld	a, d
+	or	a, e
+	jr	Z,00102$
+	bit	0, c
+	jr	NZ,00102$
+	ld	hl, #_player_virtual_x
+	ld	a, (hl)
+	sub	a, #0xfa
+	inc	hl
+	ld	a, (hl)
+	sbc	a, #0x00
+	ld	d, (hl)
+	ld	a, #0x00
+	ld	e, a
+	bit	7, e
+	jr	Z,00395$
+	bit	7, d
+	jr	NZ,00396$
+	cp	a, a
+	jr	00396$
+00395$:
+	bit	7, d
+	jr	Z,00396$
+	scf
+00396$:
+	jr	NC,00102$
+;main.c:253: player_x += 1;
+	ld	hl, #_player_x
+	ld	(hl), b
+;main.c:254: player_direction = PLAYER_DIRECTION_RIGHT;
+	ld	hl, #_player_direction
+	ld	(hl), #0x0c
+;main.c:255: is_player_walking = 1;
+	ld	hl, #_is_player_walking
+	ld	(hl), #0x01
+	jr	00154$
 00102$:
-;main.c:200: is_player_walking = 0;
+;main.c:260: is_player_walking = 0;
 	ld	hl, #_is_player_walking
 	ld	(hl), #0x00
-;main.c:201: frame_skip = 1;  // On force le rafraîchissement de l'animation
+;main.c:261: frame_skip = 1;  // On force le rafraîchissement de l'animation
 	ldhl	sp,	#0
 	ld	(hl), #0x01
-00115$:
-;main.c:204: if (keys & J_START)
-	bit	7, c
-	jr	Z,00118$
-;main.c:206: move_bkg(0, 0);
+00154$:
+;main.c:264: if (keys & J_START)
+	ldhl	sp,	#1
+	bit	7, (hl)
+	jr	Z,00158$
+;main.c:266: move_bkg(0, 0);
 	xor	a, a
 	push	af
 	inc	sp
@@ -786,45 +1112,45 @@ _main::
 	inc	sp
 	call	_move_bkg
 	add	sp, #2
-;main.c:207: player_x = 80;
+;main.c:267: player_x = 80;
 	ld	hl, #_player_x
 	ld	(hl), #0x50
-;main.c:208: player_y = 72;
+;main.c:268: player_y = 72;
 	ld	hl, #_player_y
 	ld	(hl), #0x48
-;main.c:209: player_virtual_x = 80;
+;main.c:269: player_virtual_x = 80;
 	ld	hl, #_player_virtual_x
 	ld	(hl), #0x50
 	inc	hl
 	ld	(hl), #0x00
-;main.c:210: player_virtual_y = 72;
+;main.c:270: player_virtual_y = 72;
 	ld	hl, #_player_virtual_y
 	ld	(hl), #0x48
 	inc	hl
 	ld	(hl), #0x00
-00118$:
-;main.c:215: if (is_player_walking)
+00158$:
+;main.c:275: if (is_player_walking)
 	ld	hl, #_is_player_walking
 	ld	a, (hl)
 	or	a, a
-	jp	Z, 00134$
-;main.c:224: if (player_direction == PLAYER_DIRECTION_RIGHT) player_virtual_x += 1;
+	jp	Z, 00174$
+;main.c:284: if (player_direction == PLAYER_DIRECTION_RIGHT) player_virtual_x += 1;
 	ld	hl, #_player_direction
 	ld	a, (hl)
 	sub	a, #0x0c
-	jr	NZ,00128$
+	jr	NZ,00168$
 	ld	hl, #_player_virtual_x
 	inc	(hl)
-	jp	NZ,00129$
+	jp	NZ,00169$
 	inc	hl
 	inc	(hl)
-	jp	00129$
-00128$:
-;main.c:225: else if (player_direction == PLAYER_DIRECTION_LEFT) player_virtual_x -= 1;
+	jp	00169$
+00168$:
+;main.c:285: else if (player_direction == PLAYER_DIRECTION_LEFT) player_virtual_x -= 1;
 	ld	hl, #_player_direction
 	ld	a, (hl)
 	sub	a, #0x12
-	jr	NZ,00125$
+	jr	NZ,00165$
 	ld	hl, #_player_virtual_x + 1
 	dec	hl
 	ld	e, (hl)
@@ -835,13 +1161,13 @@ _main::
 	ld	(hl), e
 	inc	hl
 	ld	(hl), d
-	jr	00129$
-00125$:
-;main.c:226: else if (player_direction == PLAYER_DIRECTION_UP) player_virtual_y -= 1;
+	jr	00169$
+00165$:
+;main.c:286: else if (player_direction == PLAYER_DIRECTION_UP) player_virtual_y -= 1;
 	ld	hl, #_player_direction
 	ld	a, (hl)
 	sub	a, #0x06
-	jr	NZ,00122$
+	jr	NZ,00162$
 	ld	hl, #_player_virtual_y + 1
 	dec	hl
 	ld	e, (hl)
@@ -852,21 +1178,21 @@ _main::
 	ld	(hl), e
 	inc	hl
 	ld	(hl), d
-	jr	00129$
-00122$:
-;main.c:227: else if (player_direction == PLAYER_DIRECTION_DOWN) player_virtual_y += 1;
+	jr	00169$
+00162$:
+;main.c:287: else if (player_direction == PLAYER_DIRECTION_DOWN) player_virtual_y += 1;
 	ld	hl, #_player_direction
 	ld	a, (hl)
 	or	a, a
-	jr	NZ,00129$
+	jr	NZ,00169$
 	ld	hl, #_player_virtual_y
 	inc	(hl)
-	jr	NZ,00241$
+	jr	NZ,00405$
 	inc	hl
 	inc	(hl)
-00241$:
-00129$:
-;main.c:229: move_sprite(PLAYER_SPRITE_L_ID, player_x, player_y);
+00405$:
+00169$:
+;main.c:289: move_sprite(PLAYER_SPRITE_L_ID, player_x, player_y);
 	ld	hl, #_player_y
 	ld	a, (hl)
 	push	af
@@ -880,7 +1206,7 @@ _main::
 	inc	sp
 	call	_move_sprite
 	add	sp, #3
-;main.c:230: move_sprite(PLAYER_SPRITE_R_ID, player_x + 8, player_y);
+;main.c:290: move_sprite(PLAYER_SPRITE_R_ID, player_x + 8, player_y);
 	ld	hl, #_player_x
 	ld	a, (hl)
 	add	a, #0x08
@@ -896,25 +1222,25 @@ _main::
 	inc	sp
 	call	_move_sprite
 	add	sp, #3
-;main.c:235: frame_skip -= 1;
+;main.c:295: frame_skip -= 1;
 	ldhl	sp,	#0
 	ld	a, (hl)
 	dec	a
 	ld	(hl), a
-;main.c:237: if (!frame_skip)
+;main.c:297: if (!frame_skip)
 	or	a, a
-	jp	NZ, 00137$
-;main.c:239: frame_skip = 8;
+	jp	NZ, 00177$
+;main.c:299: frame_skip = 8;
 	ld	(hl), #0x08
-	jr	00135$
-;main.c:243: continue;
-00134$:
-;main.c:248: player_animation_frame = 0;
+	jr	00175$
+;main.c:303: continue;
+00174$:
+;main.c:308: player_animation_frame = 0;
 	ld	hl, #_player_animation_frame
 	ld	(hl), #0x00
-00135$:
-;main.c:254: PLAYER_SPRITE_ANIM_L,
-;main.c:253: PLAYER_SPRITE_L_ID,
+00175$:
+;main.c:314: PLAYER_SPRITE_ANIM_L,
+;main.c:313: PLAYER_SPRITE_L_ID,
 	ld	hl, #_player_animation_frame
 	ld	a, (hl)
 	push	af
@@ -930,8 +1256,8 @@ _main::
 	inc	sp
 	call	_update_sprite_animation
 	add	sp, #5
-;main.c:259: PLAYER_SPRITE_ANIM_R,
-;main.c:258: PLAYER_SPRITE_R_ID,
+;main.c:319: PLAYER_SPRITE_ANIM_R,
+;main.c:318: PLAYER_SPRITE_R_ID,
 	ld	hl, #_player_animation_frame
 	ld	a, (hl)
 	push	af
@@ -949,9 +1275,9 @@ _main::
 	add	sp, #5
 	ld	hl, #_player_animation_frame
 	ld	(hl), e
-	jp	00137$
-;main.c:263: }
-	inc	sp
+	jp	00177$
+;main.c:323: }
+	add	sp, #6
 	ret
 	.area _CODE
 	.area _CABS (ABS)

@@ -71,13 +71,13 @@ Area                                    Addr        Size        Decimal Bytes (A
      000001AC  l__HOME                         
      00000200  s__CODE                         
      00000FF2  l__BASE                         
-     000024E2  l__CODE                         
-     000026E2  s__HOME                         
-     0000288E  s__BASE                         
-     00003880  s__GSINIT                       
-     00003880  s__LIT                          
-     00003970  s__GSINITTAIL                   
-     00003971  s__GSFINAL                      
+     000026B1  l__CODE                         
+     000028B1  s__HOME                         
+     00002A5D  s__BASE                         
+     00003A4F  s__GSINIT                       
+     00003A4F  s__LIT                          
+     00003B3F  s__GSINITTAIL                   
+     00003B40  s__GSFINAL                      
      0000C0A0  s__DATA                         
      0000C0D9  s__BSS                          
      0000C15D  s__HEAP                         
@@ -87,7 +87,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00000200    000024E2 =        9442. bytes (REL,CON)
+_CODE                               00000200    000026B1 =        9905. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -97,70 +97,70 @@ _CODE                               00000200    000024E2 =        9442. bytes (R
      000002B9  _title_screen                      main
      0000030F  _clear_screen                      main
      00000335  _main                              main
-     0000060A  _PLAYER_SPRITES                    player_sprites
-     0000084A  _TILEMAP                           tilemap
-     00000C4A  _TILESET                           tileset
-     0000123A  _putchar                           font.ms
-     00001243  _setchar                           font.ms
-     0000124C  _gotoxy                            font.ms
-     00001257  _posx                              font.ms
-     00001268  _posy                              font.ms
-     00001279  .adv_gcurs                         Drawing1
-     00001296  .circle                            Drawing1
-     00001339  .horlin                            Drawing1
-     00001371  .verlin                            Drawing1
-     000013CD  .circplot                          Drawing1
-     0000144B  .box                               Drawing1
-     00001521  .line                              Drawing1
-     00001642  .xonly                             Drawing1
-     00001791  .yonly                             Drawing1
-     000017B2  .plot                              Drawing1
-     000017CF  .wrbyte                            Drawing1
-     00001851  .getpix                            Drawing1
-     00001886  .wrtchr                            Drawing1
-     000018EA  _gotogxy                           Drawing1
-     000018F5  _wrtchr                            Drawing1
-     0000190A  _getpix                            Drawing1
-     00001916  _color                             Drawing1
-     00001925  _circle                            Drawing1
-     0000193F  _box                               Drawing1
-     00001963  _line                              Drawing1
-     0000197B  _plot_point                        Drawing1
-     0000198F  _plot                              Drawing1
-     000019B7  _vprintf                           vprintf
-     000019D1  _printf                            vprintf
-     000019EC  __divsuchar                        
-     000019FB  __modsuchar                        
-     00001A07  __divuschar                        
-     00001A19  __moduschar                        
-     00001A29  __divschar                         
-     00001A37  __modschar                         
-     00001A43  __divsint                          
-     00001A57  __modsint                          
-     00001A69  __divuchar                         
-     00001A77  __moduchar                         
-     00001A83  __divuint                          
-     00001A97  __moduint                          
+     000007D9  _PLAYER_SPRITES                    player_sprites
+     00000A19  _TILEMAP                           tilemap
+     00000E19  _TILESET                           tileset
+     00001409  _putchar                           font.ms
+     00001412  _setchar                           font.ms
+     0000141B  _gotoxy                            font.ms
+     00001426  _posx                              font.ms
+     00001437  _posy                              font.ms
+     00001448  .adv_gcurs                         Drawing1
+     00001465  .circle                            Drawing1
+     00001508  .horlin                            Drawing1
+     00001540  .verlin                            Drawing1
+     0000159C  .circplot                          Drawing1
+     0000161A  .box                               Drawing1
+     000016F0  .line                              Drawing1
+     00001811  .xonly                             Drawing1
+     00001960  .yonly                             Drawing1
+     00001981  .plot                              Drawing1
+     0000199E  .wrbyte                            Drawing1
+     00001A20  .getpix                            Drawing1
+     00001A55  .wrtchr                            Drawing1
+     00001AB9  _gotogxy                           Drawing1
+     00001AC4  _wrtchr                            Drawing1
+     00001AD9  _getpix                            Drawing1
+     00001AE5  _color                             Drawing1
+     00001AF4  _circle                            Drawing1
+     00001B0E  _box                               Drawing1
+     00001B32  _line                              Drawing1
+     00001B4A  _plot_point                        Drawing1
+     00001B5E  _plot                              Drawing1
+     00001B86  _vprintf                           vprintf
+     00001BA0  _printf                            vprintf
+     00001BBB  __divsuchar                        
+     00001BCA  __modsuchar                        
+     00001BD6  __divuschar                        
+     00001BE8  __moduschar                        
+     00001BF8  __divschar                         
+     00001C06  __modschar                         
+     00001C12  __divsint                          
+     00001C26  __modsint                          
+     00001C38  __divuchar                         
+     00001C46  __moduchar                         
+     00001C52  __divuint                          
+     00001C66  __moduint                          
 ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00000200    000024E2 =        9442. bytes (REL,CON)
+_CODE                               00000200    000026B1 =        9905. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00001AA9  .div8                              
-     00001AA9  .mod8                              
-     00001AB1  .div16                             
-     00001AB1  .mod16                             
-     00001AE7  .divu8                             
-     00001AE7  .modu8                             
-     00001AEA  .divu16                            
-     00001AEA  .modu16                            
-     00001C0F  __print_format                     printf_large
-     000026C2  ___sdcc_call_hl                    
-     000026C3  _strlen                            _strlen
+     00001C78  .div8                              
+     00001C78  .mod8                              
+     00001C80  .div16                             
+     00001C80  .mod16                             
+     00001CB6  .divu8                             
+     00001CB6  .modu8                             
+     00001CB9  .divu16                            
+     00001CB9  .modu16                            
+     00001DDE  __print_format                     printf_large
+     00002891  ___sdcc_call_hl                    
+     00002892  _strlen                            _strlen
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
 Hexadecimal  [32-Bits]
@@ -340,144 +340,144 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_HOME                               000026E2    000001AC =         428. bytes (REL,CON)
+_HOME                               000028B1    000001AC =         428. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000026E2  .set_mode                          Runtime
-     000026F2  .remove_VBL                        Runtime
-     000026F8  .remove_LCD                        Runtime
-     000026FE  .remove_TIM                        Runtime
-     00002704  .remove_SIO                        Runtime
-     0000270A  .remove_JOY                        Runtime
-     00002710  .add_VBL                           Runtime
-     00002716  .add_LCD                           Runtime
-     0000271C  .add_TIM                           Runtime
-     00002722  .add_SIO                           Runtime
-     00002728  .add_JOY                           Runtime
-     0000272E  .remove_int                        Runtime
-     0000274E  .add_int                           Runtime
-     0000276A  .wait_vbl_done                     Runtime
-     0000276A  _wait_vbl_done                     Runtime
-     00002781  .display_off                       Runtime
-     00002781  _display_off                       Runtime
-     000027A2  .serial_IO                         Runtime
-     000027D1  _mode                              Runtime
-     000027DA  _get_mode                          Runtime
-     000027DF  _enable_interrupts                 Runtime
-     000027E1  _disable_interrupts                Runtime
-     000027E3  .reset                             Runtime
-     000027E3  _reset                             Runtime
-     000027E9  _set_interrupts                    Runtime
-     000027F4  _remove_VBL                        Runtime
-     000027FF  _remove_LCD                        Runtime
-     0000280A  _remove_TIM                        Runtime
-     00002815  _remove_SIO                        Runtime
-     00002820  _remove_JOY                        Runtime
-     0000282B  _add_VBL                           Runtime
-     00002836  _add_LCD                           Runtime
-     00002841  _add_TIM                           Runtime
-     0000284C  _add_SIO                           Runtime
-     00002857  _add_JOY                           Runtime
-     00002862  _clock                             Runtime
-     0000286B  __printTStates                     Runtime
-     0000286C  banked_call                        Runtime
-     00002885  banked_ret                         Runtime
+     000028B1  .set_mode                          Runtime
+     000028C1  .remove_VBL                        Runtime
+     000028C7  .remove_LCD                        Runtime
+     000028CD  .remove_TIM                        Runtime
+     000028D3  .remove_SIO                        Runtime
+     000028D9  .remove_JOY                        Runtime
+     000028DF  .add_VBL                           Runtime
+     000028E5  .add_LCD                           Runtime
+     000028EB  .add_TIM                           Runtime
+     000028F1  .add_SIO                           Runtime
+     000028F7  .add_JOY                           Runtime
+     000028FD  .remove_int                        Runtime
+     0000291D  .add_int                           Runtime
+     00002939  .wait_vbl_done                     Runtime
+     00002939  _wait_vbl_done                     Runtime
+     00002950  .display_off                       Runtime
+     00002950  _display_off                       Runtime
+     00002971  .serial_IO                         Runtime
+     000029A0  _mode                              Runtime
+     000029A9  _get_mode                          Runtime
+     000029AE  _enable_interrupts                 Runtime
+     000029B0  _disable_interrupts                Runtime
+     000029B2  .reset                             Runtime
+     000029B2  _reset                             Runtime
+     000029B8  _set_interrupts                    Runtime
+     000029C3  _remove_VBL                        Runtime
+     000029CE  _remove_LCD                        Runtime
+     000029D9  _remove_TIM                        Runtime
+     000029E4  _remove_SIO                        Runtime
+     000029EF  _remove_JOY                        Runtime
+     000029FA  _add_VBL                           Runtime
+     00002A05  _add_LCD                           Runtime
+     00002A10  _add_TIM                           Runtime
+     00002A1B  _add_SIO                           Runtime
+     00002A26  _add_JOY                           Runtime
+     00002A31  _clock                             Runtime
+     00002A3A  __printTStates                     Runtime
+     00002A3B  banked_call                        Runtime
+     00002A54  banked_ret                         Runtime
 ASxxxx Linker V03.00 + NoICE + sdld,  page 25.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_BASE                               0000288E    00000FF2 =        4082. bytes (REL,CON)
+_BASE                               00002A5D    00000FF2 =        4082. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     0000288E  .set_sprite_prop                   
-     0000289B  _set_sprite_prop                   
-     000028A6  _scroll_bkg                        
-     000028BC  font_copy_uncompressed             font.ms
-     000028F2  font_copy_compressed               font.ms
-     00002947  font_load                          font.ms
-     0000298F  font_copy_current                  font.ms
-     000029D7  font_set                           font.ms
-     000029E4  .put_char                          font.ms
-     000029FD  .out_char                          font.ms
-     00002A04  .del_char                          font.ms
-     00002A5F  _font_load                         font.ms
-     00002A6D  _font_set                          font.ms
-     00002A7C  _font_init                         font.ms
-     00002A9E  .cls                               font.ms
-     00002A9E  _cls                               font.ms
-     00002AD0  .cr_curs                           font.ms
-     00002AE5  .adv_curs                          font.ms
-     00002B41  .tmode                             font.ms
-     00002B6A  .tmode_out                         font.ms
-     00002B7A  .padup                             
-     00002B7A  _waitpadup                         
-     00002B8A  .jpad                              
-     00002BB7  .wait_pad                          
-     00002BBE  _joypad                            
-     00002BC3  _waitpad                           
-     00002BCD  .mv_sprite                         
-     00002BDC  _move_sprite                       
-     00002BE9  _set_bkg_data                      
-     00002BE9  _set_win_data                      
-     00002C36  _set_sprite_data                   
-     00002C65  _font_load_ibm_fixed               
-     00002C6C  _font_ibm_fixed                    
-     00002D6E  _font_ibm_fixed_tiles              
-     0000356E  .gmode                             Drawing1
-     000035D0  .vbl                               Drawing1
-     000035DB  .lcd                               Drawing1
-     000035E8  .draw_image                        Drawing1
-     000035F2  .switch_data                       Drawing1
-     00003629  _switch_data                       Drawing1
-     00003644  _draw_image                        Drawing1
-     00003657  .y_table                           Drawing1
-     00003777  _move_bkg                          
-     00003780  .set_sprite_tile                   
-     0000378D  _set_sprite_tile                   
-     00003798  .get_sprite_prop                   
-     000037A5  _get_sprite_prop                   
-     000037AE  .init_vram                         
-     000037BC  .init_wtt                          
-     000037CC  .init_btt                          
+     00002A5D  .set_sprite_prop                   
+     00002A6A  _set_sprite_prop                   
+     00002A75  _scroll_bkg                        
+     00002A8B  font_copy_uncompressed             font.ms
+     00002AC1  font_copy_compressed               font.ms
+     00002B16  font_load                          font.ms
+     00002B5E  font_copy_current                  font.ms
+     00002BA6  font_set                           font.ms
+     00002BB3  .put_char                          font.ms
+     00002BCC  .out_char                          font.ms
+     00002BD3  .del_char                          font.ms
+     00002C2E  _font_load                         font.ms
+     00002C3C  _font_set                          font.ms
+     00002C4B  _font_init                         font.ms
+     00002C6D  .cls                               font.ms
+     00002C6D  _cls                               font.ms
+     00002C9F  .cr_curs                           font.ms
+     00002CB4  .adv_curs                          font.ms
+     00002D10  .tmode                             font.ms
+     00002D39  .tmode_out                         font.ms
+     00002D49  .padup                             
+     00002D49  _waitpadup                         
+     00002D59  .jpad                              
+     00002D86  .wait_pad                          
+     00002D8D  _joypad                            
+     00002D92  _waitpad                           
+     00002D9C  .mv_sprite                         
+     00002DAB  _move_sprite                       
+     00002DB8  _set_bkg_data                      
+     00002DB8  _set_win_data                      
+     00002E05  _set_sprite_data                   
+     00002E34  _font_load_ibm_fixed               
+     00002E3B  _font_ibm_fixed                    
+     00002F3D  _font_ibm_fixed_tiles              
+     0000373D  .gmode                             Drawing1
+     0000379F  .vbl                               Drawing1
+     000037AA  .lcd                               Drawing1
+     000037B7  .draw_image                        Drawing1
+     000037C1  .switch_data                       Drawing1
+     000037F8  _switch_data                       Drawing1
+     00003813  _draw_image                        Drawing1
+     00003826  .y_table                           Drawing1
+     00003946  _move_bkg                          
+     0000394F  .set_sprite_tile                   
+     0000395C  _set_sprite_tile                   
+     00003967  .get_sprite_prop                   
+     00003974  _get_sprite_prop                   
+     0000397D  .init_vram                         
+     0000398B  .init_wtt                          
+     0000399B  .init_btt                          
 ASxxxx Linker V03.00 + NoICE + sdld,  page 26.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_BASE                               0000288E    00000FF2 =        4082. bytes (REL,CON)
+_BASE                               00002A5D    00000FF2 =        4082. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000037DA  .init_tt                           
-     000037E0  .copy_vram                         
-     000037EF  _get_data                          
-     000037EF  _set_data                          
-     00003802  _set_bkg_tiles                     
-     00003816  .set_xy_wtt                        
-     00003827  .set_xy_btt                        
-     00003836  .set_xy_tt                         
-     00003867  _set_tiles                         
+     000039A9  .init_tt                           
+     000039AF  .copy_vram                         
+     000039BE  _get_data                          
+     000039BE  _set_data                          
+     000039D1  _set_bkg_tiles                     
+     000039E5  .set_xy_wtt                        
+     000039F6  .set_xy_btt                        
+     00003A05  .set_xy_tt                         
+     00003A36  _set_tiles                         
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 27.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_GSINIT                             00003880    000000F0 =         240. bytes (REL,CON)
+_GSINIT                             00003A4F    000000F0 =         240. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00003880  gsinit                             Runtime
+     00003A4F  gsinit                             Runtime
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 28.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_GSINITTAIL                         00003970    00000001 =           1. bytes (REL,CON)
+_GSINITTAIL                         00003B3F    00000001 =           1. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -544,7 +544,7 @@ _HEAP                               0000C15D    00000000 =           0. bytes (R
 
 Files Linked                              [ module(s) ]
 
-C:/Users/FDO/GB_GayTest/src/gbdk/bin/../lib/crt0.rel
+C:/Users/FDO/GB_GehBoiHaven/src/gbdk/bin/../lib/crt0.rel
                                           [ Runtime ]
 main.rel                                  [ main ]
 player.sprites.rel                        [ player_sprites ]
@@ -554,43 +554,43 @@ tileset.rel                               [ tileset ]
 
 Libraries Linked                          [ object file ]
 
-C:/Users/FDO/GB_GayTest/src/gbdk/bin/../lib/gb.lib
+C:/Users/FDO/GB_GehBoiHaven/src/gbdk/bin/../lib/gb.lib
                                           [ set_prop.rel ]
-C:/Users/FDO/GB_GayTest/src/gbdk/bin/../lib/gb.lib
+C:/Users/FDO/GB_GehBoiHaven/src/gbdk/bin/../lib/gb.lib
                                           [ scroll_b.rel ]
-C:/Users/FDO/GB_GayTest/src/gbdk/bin/../lib/gb.lib
+C:/Users/FDO/GB_GehBoiHaven/src/gbdk/bin/../lib/gb.lib
                                           [ font.rel ]
-C:/Users/FDO/GB_GayTest/src/gbdk/bin/../lib/gb.lib
+C:/Users/FDO/GB_GehBoiHaven/src/gbdk/bin/../lib/gb.lib
                                           [ pad.rel ]
-C:/Users/FDO/GB_GayTest/src/gbdk/bin/../lib/gb.lib
+C:/Users/FDO/GB_GehBoiHaven/src/gbdk/bin/../lib/gb.lib
                                           [ mv_spr.rel ]
-C:/Users/FDO/GB_GayTest/src/gbdk/bin/../lib/gb.lib
+C:/Users/FDO/GB_GehBoiHaven/src/gbdk/bin/../lib/gb.lib
                                           [ set_data.rel ]
-C:/Users/FDO/GB_GayTest/src/gbdk/bin/../lib/gb.lib
+C:/Users/FDO/GB_GehBoiHaven/src/gbdk/bin/../lib/gb.lib
                                           [ ibmfixed.rel ]
-C:/Users/FDO/GB_GayTest/src/gbdk/bin/../lib/gb.lib
+C:/Users/FDO/GB_GehBoiHaven/src/gbdk/bin/../lib/gb.lib
                                           [ drawing.rel ]
-C:/Users/FDO/GB_GayTest/src/gbdk/bin/../lib/gb.lib
+C:/Users/FDO/GB_GehBoiHaven/src/gbdk/bin/../lib/gb.lib
                                           [ mv_bkg.rel ]
-C:/Users/FDO/GB_GayTest/src/gbdk/bin/../lib/gb.lib
+C:/Users/FDO/GB_GehBoiHaven/src/gbdk/bin/../lib/gb.lib
                                           [ set_spr.rel ]
 C:\Program Files\SDCC\bin\..\lib\gbz80/gbz80.lib
                                           [ vprintf.rel ]
-C:/Users/FDO/GB_GayTest/src/gbdk/bin/../lib/gb.lib
+C:/Users/FDO/GB_GehBoiHaven/src/gbdk/bin/../lib/gb.lib
                                           [ get_prop.rel ]
-C:/Users/FDO/GB_GayTest/src/gbdk/bin/../lib/gb.lib
+C:/Users/FDO/GB_GehBoiHaven/src/gbdk/bin/../lib/gb.lib
                                           [ init_tt.rel ]
 C:\Program Files\SDCC\bin\..\lib\gbz80/gbz80.lib
                                           [ div.rel ]
-C:/Users/FDO/GB_GayTest/src/gbdk/bin/../lib/gb.lib
+C:/Users/FDO/GB_GehBoiHaven/src/gbdk/bin/../lib/gb.lib
                                           [ cpy_data.rel ]
-C:/Users/FDO/GB_GayTest/src/gbdk/bin/../lib/gb.lib
+C:/Users/FDO/GB_GehBoiHaven/src/gbdk/bin/../lib/gb.lib
                                           [ set_bk_t.rel ]
 C:\Program Files\SDCC\bin\..\lib\gbz80/gbz80.lib
                                           [ printf_large.rel ]
 C:\Program Files\SDCC\bin\..\lib\gbz80/gbz80.lib
                                           [ __sdcc_call_hl.rel ]
-C:/Users/FDO/GB_GayTest/src/gbdk/bin/../lib/gb.lib
+C:/Users/FDO/GB_GehBoiHaven/src/gbdk/bin/../lib/gb.lib
                                           [ set_xy_t.rel ]
 C:\Program Files\SDCC\bin\..\lib\gbz80/gbz80.lib
                                           [ _strlen.rel ]
